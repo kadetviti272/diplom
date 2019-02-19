@@ -35,13 +35,13 @@ public class AdminMasengger {
         if((People)table.getSelectionModel().getSelectedItem()!=null){
             mesegPeople = (People)table.getSelectionModel().getSelectedItem();
             label.setText(mesegPeople.getName()+" "+mesegPeople.getSoname());
-            foolText.setText(mesegPeople.getText());
+            //foolText.setText(mesegPeople.getText());
         }
     }
 
     @FXML
     public void sendMasage(ActionEvent actionEvent) {
-        mesegPeople.setText(mesegPeople.getText()+"\n\r"+"admin" + "\n\r"+ lineText.getText());
-        foolText.setText(mesegPeople.getText());
+//        mesegPeople.setText(mesegPeople.getText()+"\n\r"+"admin" + "\n\r"+ lineText.getText());
+//        foolText.setText(mesegPeople.getText());
     }
 }
