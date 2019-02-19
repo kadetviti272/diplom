@@ -1,9 +1,13 @@
 package Models;
 
 public class Massenger {
-    private String text = "";
+    private String text;
     private boolean incoming;
     private boolean outcoming;
+
+    public Massenger(){
+        text = "";
+    }
 
     public Massenger(String text, boolean incoming, boolean outcomin){
         this.incoming = incoming;

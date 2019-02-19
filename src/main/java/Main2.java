@@ -25,7 +25,7 @@ public class Main2 {
         System.out.println("Programa rbotaet");
 
 
-//        Date date = new Date();
+//        Date dateg = new Date();
 //        System.out.println(date);
 //        System.out.println(date.getMonth());
 

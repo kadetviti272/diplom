@@ -23,6 +23,7 @@ public class People {
         this.soname= new SimpleStringProperty("Net tagogo") ;
         this.fname= new SimpleStringProperty("Net tagogo");
         this.rang= new SimpleStringProperty("Net tagogo");
+        this.massenger = new Massenger();
     }
 
     public People(int id, String login, String password, String name, String soname, String fname, String rang, Massenger massenger ) {
@@ -53,6 +54,14 @@ public class People {
 
     public String toString2(){
         return  rang.getValue()+" "+name.getValue()+" "+soname.getValue()+" "+fname.getValue();
+    }
+
+    public Massenger getMassenger() {
+        return massenger;
+    }
+
+    public void setMassenger(Massenger massenger) {
+        this.massenger = massenger;
     }
 
     public int getId() {

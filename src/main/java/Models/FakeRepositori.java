@@ -54,9 +54,9 @@ public class FakeRepositori {
         Table table = db.getTable("user");
         for (Row row : table) {
             People tempPeople = new People();
+            Massenger tempMasanger = new Massenger();
             for (Column column : table.getColumns()) {
                 String columnName = column.getName();
-                Object value = null;
                 switch (columnName) {
                     case "id":
                         tempPeople.setId((Integer) row.get(columnName));
@@ -79,8 +79,18 @@ public class FakeRepositori {
                     case "rang":
                         tempPeople.setRang((String) row.get(columnName));
                         break;
+                    case  "text":
+                        tempMasanger.setText((String) row.get(columnName));
+                        break;
+                    case  "inmasage":
+                        tempMasanger.setIncoming(((Boolean) row.get(columnName)).booleanValue());
+                        break;
+                    case  "outmasage":
+                        tempMasanger.setOutcoming(((Boolean) row.get(columnName)).booleanValue());
+                        break;
                 }
             }
+            tempPeople.setMassenger(tempMasanger);
             System.out.println(tempPeople);
             fakePeople.add(tempPeople);
         }
@@ -95,19 +105,17 @@ public class FakeRepositori {
                 Object value = row.get(columnName);
                 switch (columnName) {
                     case "dey":
-                        //System.out.println(row.get(columnName).getClass());
                         tempduty.setData((Date) row.get(columnName));
                         break;
                     case "fkuser":
                         tempduty.setId((Integer) row.get(columnName));
+                        break;
                     case  "certified" :
-                        System.out.println(row.get(columnName));
-                        if(row.get(columnName).toString().equals("true"))
-                        tempduty.setCertified(true);
+                        tempduty.setCertified(((Boolean) row.get(columnName)).booleanValue());
+                        break;
                 }
             }
             fakeDuty.add(tempduty);
-
         }
 
         // METOD 3
