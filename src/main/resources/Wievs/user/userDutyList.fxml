@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane depthTest="ENABLE" prefHeight="406.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.UserDutyList">
+   <children>
+      <ComboBox fx:id="combobox" layoutX="33.0" layoutY="28.0" prefWidth="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <TableView fx:id="tablenaryd" layoutX="14.0" layoutY="46.0" onMousePressed="#prestable" prefHeight="340.0" prefWidth="473.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="46.0">
+         <columns>
+            <TableColumn fx:id="columname" prefWidth="75.0" text="Ім'я фамілія" />
+            <TableColumn fx:id="columdate" prefWidth="75.0" text="затверджений чи ні" />
+            <TableColumn fx:id="columzaveren" prefWidth="75.0" text="дата" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

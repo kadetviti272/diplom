@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="440.0" prefWidth="736.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GlvaPanel">
+   <children>
+      <HBox layoutX="168.0" layoutY="-1.0" minWidth="-Infinity" prefHeight="66.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ComboBox fx:id="combobox" prefWidth="150.0">
+               <HBox.margin>
+                  <Insets bottom="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+            </ComboBox>
+            <CheckBox fx:id="chekbox" mnemonicParsing="false" onAction="#clikChek" prefHeight="32.0" prefWidth="125.0" text="Затвердити">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="13.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+         </children>
+      </HBox>
+      <TableView fx:id="table" layoutX="203.0" layoutY="121.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
+        <columns>
+          <TableColumn fx:id="col1" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Дата " />
+          <TableColumn fx:id="col2" prefWidth="75.0" text="П.І.П" />
+            <TableColumn fx:id="col3" prefWidth="75.0" text="Затверджений" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" />
+   </padding>
+</AnchorPane>

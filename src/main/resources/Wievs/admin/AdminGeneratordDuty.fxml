@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane depthTest="ENABLE" prefHeight="400.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.admin.AdmGenerator">
+   <children>
+      <ComboBox fx:id="comboBox" layoutX="33.0" layoutY="28.0" prefWidth="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button fx:id="generbutton" layoutX="188.0" layoutY="10.0" mnemonicParsing="false" onAction="#generButton" text="Згенерувати" AnchorPane.leftAnchor="188.0" AnchorPane.topAnchor="10.0" />
+      <TableView fx:id="tablenaryd" layoutX="60.0" layoutY="60.0" onMousePressed="#prestable" prefHeight="340.0" prefWidth="473.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="202.0" AnchorPane.topAnchor="50.0">
+        <columns>
+          <TableColumn fx:id="columname" prefWidth="75.0" text="C1" />
+          <TableColumn fx:id="columdate" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="columzaveren" prefWidth="75.0" text="C1" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label fx:id="lableZamena" layoutX="621.0" layoutY="27.0" text="кого" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="27.0" />
+      <ComboBox fx:id="zamenacombo" layoutX="489.0" layoutY="50.0" prefHeight="25.0" prefWidth="159.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="50.0" />
+      <Button layoutX="489.0" layoutY="85.0" mnemonicParsing="false" onAction="#zamenabutton" text="замінити" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="85.0" />
+   </children>
+</AnchorPane>
