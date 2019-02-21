@@ -29,12 +29,11 @@ public class Authorization {
 
     public void pressbutton(ActionEvent actionEvent) throws IOException {
         authorization(login.getText(),pssword.getText());
-      //((Stage)(((Button)actionEvent.getSource()).getScene().getWindow())).close();
     }
 
     public void authorization(String login, String password) throws IOException {
         String[]arr = new String[]{"cheff","user"};
-        Database db = DatabaseBuilder.open(new File("db.mdb"));
+        Database db = DatabaseBuilder.open(new File("test.mdb"));
 
         String temppass="";
         String templog="";
@@ -43,7 +42,6 @@ public class Authorization {
 
         for (int i = 0; i <arr.length ; i++) {
             Table table = db.getTable(arr[i]);
-
             for(Row row : table) {
                 if(avtorizovan)break;
                 for(Column column : table.getColumns()) {
@@ -68,6 +66,7 @@ public class Authorization {
                 }
             }
         }
+        db.close();
 //        1-admin;
 //        2-nachal;
 //        3-user;
@@ -107,6 +106,9 @@ public class Authorization {
 
     private void showWindow(String URL) throws IOException {
         final Stage primaryStage = new Stage();
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("da zakrl");
+        });
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(URL));
         Parent root = fxmlLoader.load();
         primaryStage.setTitle("Hello World");

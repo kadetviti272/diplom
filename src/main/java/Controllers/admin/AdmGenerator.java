@@ -43,7 +43,7 @@ public class AdmGenerator {
             }
         });
 
-        columdate.setCellValueFactory( t -> new SimpleStringProperty( GeneratorDuty.dateFormat.format(t.getValue().getData()) ));
+        columdate.setCellValueFactory( t -> new SimpleStringProperty( GeneratorDuty.dateFormat.format(t.getValue().getData())));
 
     }
 

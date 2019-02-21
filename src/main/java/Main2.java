@@ -15,14 +15,14 @@ public class Main2 {
 
     public static void main(String[] args) throws IOException, ParseException {
 
-        Docx docx = new Docx("/tro.docx");
-        docx.setVariablePattern(new VariablePattern("#{","}"));
-        Variables variables = new Variables();
-        variables.addTextVariable(new TextVariable("#{tooo}","andrey"));
-        variables.addTextVariable(new TextVariable("#{on}","Dobro pojalovat"));  //addTableVariable();
-        docx.fillTemplate(variables);
-        docx.save("/000.docx" );
-        System.out.println("Programa rbotaet");
+//        Docx docx = new Docx("/tro.docx");
+//        docx.setVariablePattern(new VariablePattern("#{","}"));
+//        Variables variables = new Variables();
+//        variables.addTextVariable(new TextVariable("#{tooo}","andrey"));
+//        variables.addTextVariable(new TextVariable("#{on}","Dobro pojalovat"));  //addTableVariable();
+//        docx.fillTemplate(variables);
+//        docx.save("/000.docx" );
+//        System.out.println("Programa rbotaet");
 
 
 //        Date dateg = new Date();

@@ -1,7 +1,7 @@
 package Models;
 
 public class Massenger {
-    private String text;
+    private String text ="";
     private boolean incoming;
     private boolean outcoming;
 

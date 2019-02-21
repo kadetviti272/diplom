@@ -28,6 +28,8 @@ public class Duty {
         }
     }
 
+
+
     public Date getDate() {
         return date;
     }

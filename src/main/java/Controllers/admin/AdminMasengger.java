@@ -28,6 +28,7 @@ public class AdminMasengger {
     private void initialize(){
         table.setItems(FakeRepositori.fakePeople);
         columPerson.setCellValueFactory(t->t.getValue().rangProperty().concat(" ").concat(t.getValue().nameProperty().concat(" ").concat(t.getValue().sonameProperty())) );
+
     }
 
     @FXML
