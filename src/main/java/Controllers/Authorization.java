@@ -33,7 +33,7 @@ public class Authorization {
 
     public void authorization(String login, String password) throws IOException {
         String[]arr = new String[]{"cheff","user"};
-        Database db = DatabaseBuilder.open(new File("test.mdb"));
+        Database db = DatabaseBuilder.open(new File("db.mdb"));
 
         String temppass="";
         String templog="";
@@ -118,6 +118,11 @@ public class Authorization {
 
     private void showWindow (String URL,People people) throws IOException {
         Stage primaryStage = new Stage();
+
+        primaryStage.setOnCloseRequest(event -> { // nada bude porabotat
+            System.out.println("da zakrl");
+        });
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(URL));
         UserMain userMain = new UserMain();
         userMain.setPeople(people);
