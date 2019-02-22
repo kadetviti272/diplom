@@ -2,6 +2,7 @@ package Controllers.admin;
 
 import Models.FakeRepositori;
 import Models.People;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -14,11 +15,14 @@ public class AdminInfoList {
 
     @FXML
     TableView<People> tablePerson;
+
     @FXML
     TableColumn<People,String> nameColum;
+
     @FXML
     TableColumn<People,String> sonameColum;
 
+    private People sendPeople;
 
     @FXML
     private void initialize() throws IOException {
@@ -29,7 +33,11 @@ public class AdminInfoList {
 
 
     public void presTable(MouseEvent mouseEvent) {
+        if ((People) tablePerson.getSelectionModel().getSelectedItem() != null) {
+            sendPeople = (People) tablePerson.getSelectionModel().getSelectedItem();
+            // rutian nada nowue poly dly otobrajeniy;
 
+        }
     }
 
     public void clicaddButton(ActionEvent actionEvent) {
@@ -37,9 +45,16 @@ public class AdminInfoList {
     }
     
     public void clicdellbutton(ActionEvent actionEvent) {
-        
+        if((People)tablePerson.getSelectionModel().getSelectedItem()!=null) {
+         People people = (People) tablePerson.getSelectionModel().getSelectedItem();
+            for (int i = 0; i <people.getListDuti().size() ; i++) {
+                people.getListDuti().get(i).setId(0);
+            }
+            FakeRepositori.fakePeople.remove(people);
+         }
     }
 
     public void clicapdeit(ActionEvent actionEvent) {
+
     }
 }

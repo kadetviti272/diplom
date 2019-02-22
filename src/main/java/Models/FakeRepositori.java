@@ -1,5 +1,6 @@
 package Models;
 import com.healthmarketscience.jackcess.*;
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -16,9 +17,12 @@ public class FakeRepositori {
     public static ObservableList<People> fakePeople = FXCollections.observableArrayList();
     public static Object[] arrControler;
 
+
+
     static {
 
         try {
+
             ReadDB();
             clinDb();
             wraitDb();
@@ -43,6 +47,12 @@ public class FakeRepositori {
             @Override
             public void onChanged(Change<? extends People> c) {
                 System.out.println("izmenenie v cheloveakh");
+//                if(fakePeople.contains(c.getList().get(0)))
+//                    System.out.println("udalili people");
+
+                if(c.wasUpdated()){
+                    System.out.println("asasasas");
+                }
             }
         }); //dbavlenie zavisimoste dly
         for (People p:fakePeople) {
@@ -211,4 +221,33 @@ public class FakeRepositori {
         }
     }
 
+
+    private static void addListener(){
+        fakeDuty.addListener((InvalidationListener) observable -> {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("++ duti");
+                }
+            });
+        });
+
+        fakePeople.addListener((InvalidationListener) observable -> {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("people ++");
+                }
+            });
+        });
+
+        fakeVacation.addListener((InvalidationListener) observable -> {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("++ vakation ++");
+                }
+            });
+        });
+    }
 }
