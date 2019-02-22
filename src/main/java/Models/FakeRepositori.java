@@ -39,6 +39,7 @@ public class FakeRepositori {
                 System.out.println("izmenenie v otpuskax");
             }
         }); // dobavlenie slushatelly dly otpuskov
+
         fakePeople.addListener(new ListChangeListener<People>() {
             @Override
             public void onChanged(Change<? extends People> c) {
