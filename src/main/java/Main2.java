@@ -1,6 +1,4 @@
-import Models.FakeRepositori;
-import Models.GeneratorDuty;
-import Models.Mans;
+import Models.*;
 import pl.jsolve.templ4docx.core.Docx;
 import pl.jsolve.templ4docx.core.VariablePattern;
 import pl.jsolve.templ4docx.variable.TextVariable;
@@ -9,11 +7,23 @@ import pl.jsolve.templ4docx.variable.Variables;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Main2 {
 
     public static void main(String[] args) throws IOException, ParseException {
+
+
+        ArrayList<People> people = new ArrayList<>();
+        people.add(new People());
+
+        ArrayList<Duty> duties = new ArrayList<>();
+        duties.add(new Duty());
+        people.get(0).getListDuti().add(duties.get(0));
+
+        people.clear();
+        System.out.println(duties.get(0).getPeople().toString());
 
 //        Docx docx = new Docx("/tro.docx");
 //        docx.setVariablePattern(new VariablePattern("#{","}"));
