@@ -45,12 +45,12 @@ public class AdminInfoList {
     }
     
     public void clicdellbutton(ActionEvent actionEvent) {
-        if((People)tablePerson.getSelectionModel().getSelectedItem()!=null) {
-         People people = (People) tablePerson.getSelectionModel().getSelectedItem();
-            for (int i = 0; i <people.getListDuti().size() ; i++) {
-                people.getListDuti().get(i).setId(0);
-            }
-            FakeRepositori.fakePeople.remove(people);
+         if((People)tablePerson.getSelectionModel().getSelectedItem()!=null) {
+             People people = (People) tablePerson.getSelectionModel().getSelectedItem();
+             for (int i = 0; i < people.getListDuti().size(); i++) {
+                 people.getListDuti().get(i).setId(0);
+             }
+             FakeRepositori.fakePeople.remove(people);
          }
     }
 

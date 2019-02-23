@@ -35,5 +35,4 @@ public class GeneratorDuty {
         return (ArrayList<Duty>) FakeRepositori.fakeDuty.stream().filter(duty->duty.getData().getMonth()+1 == mans.getCountmans()).collect(Collectors.toList());
     }
 
-
 }

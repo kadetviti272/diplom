@@ -48,12 +48,6 @@ public class FakeRepositori {
             @Override
             public void onChanged(Change<? extends People> c) {
                 System.out.println("izmenenie v cheloveakh");
-//                if(fakePeople.contains(c.getList().get(0)))
-//                    System.out.println("udalili people");
-
-                if(c.wasUpdated()){
-                    System.out.println("asasasas");
-                }
             }
         }); //dbavlenie zavisimoste dly
         for (People p:fakePeople) {
