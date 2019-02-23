@@ -9,7 +9,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane minHeight="-Infinity" prefHeight="387.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.admin.ListInfoPerson">
+
+        <!--fx:controller="Controllers.admin.ChangeInfoPerson"-->
+<AnchorPane minHeight="-Infinity" prefHeight="387.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <GridPane layoutX="6.0" layoutY="14.0" prefHeight="155.0" prefWidth="641.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="14.0">
          <columnConstraints>
@@ -26,7 +28,7 @@
          <children>
             <Label prefHeight="17.0" prefWidth="23.0" text="Ім'я" />
             <Label text="Фамілія" GridPane.rowIndex="1" />
-            <Label text="Посада" GridPane.rowIndex="4" />
+            <Label fx:id="pos" text="Посада" GridPane.rowIndex="4" />
             <TextField fx:id="nameTextFild" GridPane.columnIndex="1" />
             <TextField fx:id="sonameTextFild" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="День неародження" GridPane.rowIndex="2" />

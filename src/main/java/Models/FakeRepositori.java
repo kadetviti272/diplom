@@ -1,4 +1,5 @@
 package Models;
+import Controllers.admin.ChangeInfoPerson;
 import com.healthmarketscience.jackcess.*;
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
@@ -15,7 +16,7 @@ public class FakeRepositori {
     public static ObservableList<Duty> fakeDuty = FXCollections.observableArrayList();
     public static ObservableList<Vacation> fakeVacation = FXCollections.observableArrayList();
     public static ObservableList<People> fakePeople = FXCollections.observableArrayList();
-    public static Object[] arrControler;
+    public static Object[] arrControler=new Object[1];
 
 
 
@@ -53,6 +54,8 @@ public class FakeRepositori {
         for (People p:fakePeople) {
             System.out.println(p);
         }
+        arrControler[0]=new ChangeInfoPerson();
+
         System.out.println("++++++++++++");
     }
 
