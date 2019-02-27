@@ -43,6 +43,16 @@ public class AdminInfoList {
 
     private People sendPeople;
 
+
+    @FXML
+    private void initialize() throws IOException {
+        FakeRepositori.clinDb();
+        FakeRepositori.wraitDb();
+        tablePerson.setItems(FakeRepositori.fakePeople);
+        nameColum.setCellValueFactory(person -> person.getValue().rangProperty());
+        sonameColum.setCellValueFactory(person -> person.getValue().sonameProperty().concat(" ").concat(person.getValue().nameProperty()));
+    }
+
     private void initLabel(){
         nameLabel.setText(sendPeople.getName());
         sonameLabel.setText(sendPeople.getSoname());
@@ -53,12 +63,6 @@ public class AdminInfoList {
         hollidayLabel.setText(test);
     }
 
-    @FXML
-    private void initialize() throws IOException {
-        tablePerson.setItems(FakeRepositori.fakePeople);
-        nameColum.setCellValueFactory(person -> person.getValue().rangProperty());
-        sonameColum.setCellValueFactory(person -> person.getValue().sonameProperty().concat(" ").concat(person.getValue().nameProperty()));
-    }
 
 
 

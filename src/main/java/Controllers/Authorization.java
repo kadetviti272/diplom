@@ -1,5 +1,6 @@
 package Controllers;
 import Controllers.User.UserMain;
+import Models.FakeRepositori;
 import Models.People;
 import com.healthmarketscience.jackcess.*;
 import javafx.event.ActionEvent;
@@ -56,7 +57,10 @@ public class Authorization {
                     if(i==0 && columnName.equals("admin")){
                         if(value.equals(true))huis = 1;
                         else huis = 2;
-                    }else huis = 3;
+                    }else{
+                        huis = 3;
+                     //   FakeRepositori.idPersonAutoriz = ((Integer)row.get("passsword"));
+                    }
                 }
 
                 if(templog.equals(login) && temppass.equals(password)){

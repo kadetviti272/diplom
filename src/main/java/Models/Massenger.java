@@ -1,26 +1,23 @@
 package Models;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class Massenger {
-    private String text ="";
     private boolean incoming;
     private boolean outcoming;
+    private Map<Boolean,String> masageHistoru;
 
     public Massenger(){
-        text = "";
+        masageHistoru = new LinkedHashMap<>();
     }
 
-    public Massenger(String text, boolean incoming, boolean outcomin){
-        this.incoming = incoming;
-        this.outcoming = outcomin;
-        this.text = text;
+    public Map<Boolean, String> getMasageHistoru() {
+        return masageHistoru;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+    public void setMasageHistoru(Map<Boolean, String> masageHistoru) {
+        this.masageHistoru = masageHistoru;
     }
 
     public boolean isIncoming() {

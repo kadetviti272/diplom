@@ -47,8 +47,6 @@ public class People {
                 ", soname=" + soname.getValue() +
                 ", fname=" + fname.getValue() +
                 ", rang=" + rang.getValue() +
-                ", listDuti=" + listDuti +
-                ", listVakation=" + listVakation +
                 '}';
     }
 

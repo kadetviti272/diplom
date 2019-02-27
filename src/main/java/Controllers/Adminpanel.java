@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -16,7 +17,6 @@ public class Adminpanel {
     @FXML
     private void initialize() throws IOException {
         borderPanel.setCenter(FXMLLoader.load(getClass().getResource("/Wievs/admin/AdminGeneratordDuty.fxml")));
-
     }
 
     public void checkRaport(ActionEvent actionEvent) {

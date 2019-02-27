@@ -1,5 +1,6 @@
 package Controllers.admin;
 
+import Models.FakeRepositori;
 import Models.GeneratorDuty;
 import Models.Duty;
 import Models.Mans;
@@ -10,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+
+import java.io.IOException;
 import java.text.ParseException;
 public class AdmGenerator {
 
@@ -28,7 +31,9 @@ public class AdmGenerator {
 
 
     @FXML
-    private void initialize() throws ParseException {
+    private void initialize() throws ParseException, IOException {
+        FakeRepositori.clinDb();
+        FakeRepositori.wraitDb();
 
         comboBox.setItems(FXCollections.observableArrayList(Mans.January, Mans.February, Mans.March, Mans.April, Mans.May, Mans.June, Mans.July, Mans.August, Mans.September, Mans.October, Mans.November, Mans.December ));
         comboBox.setOnAction(event ->  tablenaryd.setItems(FXCollections.observableArrayList(GeneratorDuty.getListDutiMans(comboBox.getValue()))));

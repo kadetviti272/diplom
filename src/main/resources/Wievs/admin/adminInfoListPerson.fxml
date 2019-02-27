@@ -78,7 +78,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <Label fx:id="hollidayLabel" layoutX="10.0" layoutY="147.0" prefHeight="17.0" prefWidth="294.0" text="Lbel" textAlignment="JUSTIFY" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="147.0" />
+                  <Label fx:id="hollidayLabel" layoutX="10.0" layoutY="147.0" prefHeight="17.0" prefWidth="294.0" text="Lbel" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="147.0" />
                </children>
             </AnchorPane>
         </items>

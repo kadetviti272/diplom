@@ -1,5 +1,7 @@
 package Models;
 import Controllers.admin.ChangeInfoPerson;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.healthmarketscience.jackcess.*;
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
@@ -7,8 +9,10 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 public class FakeRepositori {
 
@@ -17,13 +21,13 @@ public class FakeRepositori {
     public static ObservableList<Vacation> fakeVacation = FXCollections.observableArrayList();
     public static ObservableList<People> fakePeople = FXCollections.observableArrayList();
     public static Object[] arrControler=new Object[1];
+    public static int idPersonAutoriz;
+    public static Type itemsMapType = new TypeToken<Map<Boolean,String>>() {}.getType();
 
 
 
     static {
-
         try {
-
             ReadDB();
             clinDb();
             wraitDb();
@@ -90,7 +94,7 @@ public class FakeRepositori {
                             tempPeople.setRang((String) row.get(columnName));
                             break;
                         case  "text":
-                            tempMasanger.setText((String) row.get(columnName));
+                            tempMasanger.setMasageHistoru(new Gson().fromJson((String)row.get(columnName),itemsMapType));
                           //  System.out.println(tempMasanger.getText());
                             break;
                         case  "inmasage":
@@ -194,9 +198,11 @@ public class FakeRepositori {
 
             Table table = db.getTable("user");
             People people;
+            String str;
             for (int j = 0; j <fakePeople.size() ; j++) {
                 people = fakePeople.get(j);
-                table.addRow(people.getPassword(), people.getLogin(), people.getName(), people.getSoname(), people.getFname(), people.getRang(), people.getId(), people.getMassenger().isOutcoming(), people.getMassenger().isOutcoming(), people.getMassenger().getText());
+                str = new Gson().toJson(people.getMassenger().getMasageHistoru());
+                table.addRow(people.getPassword(), people.getLogin(), people.getName(), people.getSoname(), people.getFname(), people.getRang(), people.getId(), people.getMassenger().isOutcoming(), people.getMassenger().isOutcoming(), str);
             }
 
             table = db.getTable("duty");
@@ -219,33 +225,4 @@ public class FakeRepositori {
         }
     }
 
-
-    private static void addListener(){
-        fakeDuty.addListener((InvalidationListener) observable -> {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("++ duti");
-                }
-            });
-        });
-
-        fakePeople.addListener((InvalidationListener) observable -> {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("people ++");
-                }
-            });
-        });
-
-        fakeVacation.addListener((InvalidationListener) observable -> {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("++ vakation ++");
-                }
-            });
-        });
-    }
 }
