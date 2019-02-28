@@ -23,7 +23,7 @@ public class FakeRepositori {
     public static Object[] arrControler=new Object[1];
     public static int idPersonAutoriz;
     public static Type itemsMapType = new TypeToken<Map<Boolean,String>>() {}.getType();
-
+    public static People autorizadPeopl;
 
 
     static {

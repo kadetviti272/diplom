@@ -40,7 +40,7 @@ public class Authorization {
         String templog="";
         int huis=0;
         boolean avtorizovan = false;
-
+        int idautorizuser=-1;
         for (int i = 0; i <arr.length ; i++) {
             Table table = db.getTable(arr[i]);
             for(Row row : table) {
@@ -48,24 +48,29 @@ public class Authorization {
                 for(Column column : table.getColumns()) {
                     String columnName = column.getName();
                     Object value = row.get(columnName);
+
                     if(columnName.equals("password")){
                         temppass = value.toString();
                     }
                     if( columnName.equals("login")){
                         templog=value.toString();
                     }
+                    if( columnName.equals("id") && i!=0){
+                        idautorizuser = (Integer)value;
+                    }
                     if(i==0 && columnName.equals("admin")){
                         if(value.equals(true))huis = 1;
                         else huis = 2;
-                    }else{
+                        idautorizuser=-1;
+                    }else if (i==1){
                         huis = 3;
-                     //   FakeRepositori.idPersonAutoriz = ((Integer)row.get("passsword"));
                     }
                 }
 
                 if(templog.equals(login) && temppass.equals(password)){
                     System.out.println("zashol  "+huis);
                     avtorizovan = true;
+                    System.out.println(idautorizuser);
                     checkUser(huis);
                 }
             }

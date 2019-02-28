@@ -54,9 +54,9 @@ public class AdminMasengger {
 
             ArrayList<HBox> hBoxes = new ArrayList<>();
             for(Map.Entry<Boolean,String> map : mesegPeople.getMassenger().getMasageHistoru().entrySet() ){
-                if(map.getKey()){
+                if(!map.getKey()){
                     wisiblAdminmasage(map.getValue());
-                }else if (!map.getKey()){
+                }else if (map.getKey()){
                     wisibleUserMasage(map.getValue());
                 }
             }
@@ -121,5 +121,4 @@ public class AdminMasengger {
         hbox.getStyleClass().add("hbox");
         Platform.runLater(() -> chatBox.getChildren().addAll(hbox));
     }
-
 }
