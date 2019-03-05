@@ -17,6 +17,7 @@ public class Adminpanel {
     @FXML
     private void initialize() throws IOException {
         borderPanel.setCenter(FXMLLoader.load(getClass().getResource("/Wievs/admin/AdminGeneratordDuty.fxml")));
+
     }
 
     public void checkRaport(ActionEvent actionEvent) {

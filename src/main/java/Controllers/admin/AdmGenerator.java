@@ -32,8 +32,6 @@ public class AdmGenerator {
 
     @FXML
     private void initialize() throws ParseException, IOException {
-        FakeRepositori.clinDb();
-        FakeRepositori.wraitDb();
 
         comboBox.setItems(FXCollections.observableArrayList(Mans.January, Mans.February, Mans.March, Mans.April, Mans.May, Mans.June, Mans.July, Mans.August, Mans.September, Mans.October, Mans.November, Mans.December ));
         comboBox.setOnAction(event ->  tablenaryd.setItems(FXCollections.observableArrayList(GeneratorDuty.getListDutiMans(comboBox.getValue()))));

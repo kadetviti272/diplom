@@ -39,6 +39,14 @@ public class UserMain {
                 e.printStackTrace();
             }
         });
+
+        personcard.setOnAction( event -> {
+            try {
+              borderPanel.setCenter(FXMLLoader.load(getClass().getResource("/Wievs/user/userInfo.fxml")));
+            } catch ( IOException e){
+                e.printStackTrace();
+            }
+        });
     }
 
     public People getPeople() {

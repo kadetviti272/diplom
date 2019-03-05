@@ -1,5 +1,8 @@
 package Models;
 
+import javafx.beans.binding.MapBinding;
+
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -9,7 +12,7 @@ public class Massenger {
     private Map<Boolean,String> masageHistoru;
 
     public Massenger(){
-        masageHistoru = new LinkedHashMap<>();
+        masageHistoru = new HashMap<>();
     }
 
     public Map<Boolean, String> getMasageHistoru() {
@@ -34,5 +37,14 @@ public class Massenger {
 
     public void setOutcoming(boolean outcoming) {
         this.outcoming = outcoming;
+    }
+
+    @Override
+    public String toString() {
+        return "Massenger{" +
+                "incoming=" + incoming +
+                ", outcoming=" + outcoming +
+                ", masageHistoru=" + masageHistoru +
+                '}';
     }
 }

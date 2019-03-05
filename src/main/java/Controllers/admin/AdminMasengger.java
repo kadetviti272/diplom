@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static Models.FakeRepositori.clinDb;
+import static Models.FakeRepositori.wraitDb;
+
 
 public class AdminMasengger {
 
@@ -36,9 +39,7 @@ public class AdminMasengger {
     private People mesegPeople;
 
     @FXML
-    private void initialize() throws IOException {
-        FakeRepositori.clinDb();
-        FakeRepositori.wraitDb();
+    private void initialize(){
         table.setItems(FakeRepositori.fakePeople);
         columPerson.setCellValueFactory(t->t.getValue().rangProperty().concat(" ").concat(t.getValue().nameProperty().concat(" ").concat(t.getValue().sonameProperty())) );
         chatBox.getStyleClass().add("chatBox");
@@ -93,11 +94,20 @@ public class AdminMasengger {
             mesegPeople.getMassenger().getMasageHistoru().put(false,lineText.getText());
         }
         lineText.setText("");
-        for (Map.Entry<Boolean,String> aa: mesegPeople.getMassenger().getMasageHistoru().entrySet()) {
-            System.out.println(aa.getValue());
-            System.out.println(aa.getKey());
-        }
-
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (FakeRepositori.fclin);
+                    FakeRepositori.fclin = true;
+                    clinDb();
+                    wraitDb();
+                    FakeRepositori.fclin = false;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     private void wisibleUserMasage(String masage){

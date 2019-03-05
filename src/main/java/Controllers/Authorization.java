@@ -1,8 +1,10 @@
 package Controllers;
 import Controllers.User.UserMain;
-import Models.FakeRepositori;
+import Models.Duty;
 import Models.People;
+import Models.Vacation;
 import com.healthmarketscience.jackcess.*;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import static Models.FakeRepositori.*;
 
 public class Authorization {
 
@@ -40,7 +43,7 @@ public class Authorization {
         String templog="";
         int huis=0;
         boolean avtorizovan = false;
-        int idautorizuser=-1;
+        int idautorizuser =-1;
         for (int i = 0; i <arr.length ; i++) {
             Table table = db.getTable(arr[i]);
             for(Row row : table) {
@@ -64,6 +67,13 @@ public class Authorization {
                         idautorizuser=-1;
                     }else if (i==1){
                         huis = 3;
+                            for (int j = 0; j < fakePeople.size() ; j++) {
+                                if (fakePeople.get(j).getId() == idautorizuser) {
+                                    autorizadPeopl = fakePeople.get(j);
+                                    System.out.println(idautorizuser+"   ssssssssssssss");
+                                }
+                            }
+
                     }
                 }
 
@@ -72,15 +82,82 @@ public class Authorization {
                     avtorizovan = true;
                     System.out.println(idautorizuser);
                     checkUser(huis);
+                    addListener();
                 }
             }
         }
         db.close();
-//        1-admin;
+//        1f-admin;
 //        2-nachal;
 //        3-user;
     }
 
+
+    private void addListener(){
+        fakeDuty.addListener(new ListChangeListener<Duty>() {
+            @Override
+            public void onChanged(Change<? extends Duty> c) {
+                System.out.println("da dodano narydov");
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            while (fclin);
+                            fclin = true;
+                            clinDb();
+                            wraitDb();
+                            fclin = false;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+
+            }
+        });
+        fakeVacation.addListener(new ListChangeListener<Vacation>() {
+
+            @Override
+            public void onChanged(Change<? extends Vacation> c) {
+                System.out.println("izmenenie v otpuskax");
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            while (fclin);
+                            fclin = true;
+                            clinDb();
+                            wraitDb();
+                            fclin = false;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        }); // dobavlenie slushatelly dly otpuskov
+        fakePeople.addListener(new ListChangeListener<People>() {
+            @Override
+            public void onChanged(Change<? extends People> c) {
+                System.out.println("izmenenie v cheloveakh");
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            while (fclin);
+                            fclin = true;
+                            clinDb();
+                            wraitDb();
+                            fclin = false;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+
+            }
+        });
+    }
 
     private void checkUser( int huis) throws IOException {
         //        1-admin;
@@ -107,9 +184,7 @@ public class Authorization {
                 url=null;
                 System.out.println("ne vernoi password");
         }
-        if(url!=null){
-            String ss = "srs";
-        }
+
     }
 
 
@@ -140,6 +215,26 @@ public class Authorization {
         primaryStage.setTitle(Integer.toString(people.getId()));
         primaryStage.setScene(new Scene(root,500,300));
         primaryStage.show();
+    }
+
+    private void clinWrait() throws IOException {
+        new Thread(()->{
+            try {
+                clinDb();
+                wraitDb();
+            } catch (IOException e) {
+                try {
+                    Thread.sleep(1000);
+                    System.out.println("da i polomalsy zdes ");
+                    clinDb();
+                    wraitDb();
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }).start();
     }
 
 }

@@ -13,6 +13,7 @@ import java.util.*;
 public class Main2 {
 
     public static void main(String[] args) throws IOException, ParseException {
+        System.out.println("Ss");
 //       HashMap<String, String> a = new HashMap<>();
 //        System.out.println(new Gson().toJson(a));
 //        for (Map.Entry<String,String> ss :a) {

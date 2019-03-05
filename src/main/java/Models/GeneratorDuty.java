@@ -25,8 +25,7 @@ public class GeneratorDuty {
         }
 
         ArrayList<Duty> tt = getListDutiMans(mans);
-        tt.clear();
-
+        FakeRepositori.fakeDuty.removeAll(tt);
         FakeRepositori.fakeDuty.addAll(tempMansDuty);
         return FXCollections.observableArrayList(tempMansDuty);
     }

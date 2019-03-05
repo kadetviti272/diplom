@@ -14,7 +14,11 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 
+import java.io.IOException;
 import java.util.Map;
+
+import static Models.FakeRepositori.clinDb;
+import static Models.FakeRepositori.wraitDb;
 
 public class UserMassenger {
 
@@ -25,11 +29,13 @@ public class UserMassenger {
 
     @FXML
     private void initialize(){
-        if(FakeRepositori.autorizadPeopl!=null && FakeRepositori.autorizadPeopl.getMassenger().getMasageHistoru()!=null){
+        System.out.println();
+        System.out.println(FakeRepositori.autorizadPeopl.getMassenger().toString());
+        if( FakeRepositori.autorizadPeopl !=null && FakeRepositori.autorizadPeopl.getMassenger().getMasageHistoru()!=null ){
             for (Map.Entry<Boolean,String> i : FakeRepositori.autorizadPeopl.getMassenger().getMasageHistoru().entrySet()) {
                 if(i.getKey()){
                     wisiblMaymasage(i.getValue());
-                }else if(i.getKey()){
+                }else if(!i.getKey()){
                     wisiblAbminMasage(i.getValue());
                 }
             }
@@ -37,17 +43,30 @@ public class UserMassenger {
         chatBox.getStyleClass().add("chatBox");
     }
 
+
     public void sendMasage(ActionEvent actionEvent) {
         if(!lineText.getText().trim().equals("")){
             wisiblMaymasage(lineText.getText());
+            lineText.setText("");
         }
         System.out.println("++"+lineText.getText());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (FakeRepositori.fclin);
+                    FakeRepositori.fclin = true;
+                    clinDb();
+                    wraitDb();
+                    FakeRepositori.fclin = false;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
-
-
     private void wisiblMaymasage(String masage){
-
         Text text=new Text(masage);
         text.setFill(Color.WHITE);
         text.getStyleClass().add("message");

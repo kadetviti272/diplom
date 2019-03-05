@@ -24,6 +24,7 @@ public class FakeRepositori {
     public static int idPersonAutoriz;
     public static Type itemsMapType = new TypeToken<Map<Boolean,String>>() {}.getType();
     public static People autorizadPeopl;
+    public static boolean fclin = false;
 
 
     static {
@@ -34,30 +35,7 @@ public class FakeRepositori {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         binding();
-        fakeDuty.addListener(new ListChangeListener<Duty>() {
-            @Override
-            public void onChanged(Change<? extends Duty> c) {
-                System.out.println("izmenenie v narydah");
-            }
-        });   // dobavlenie slushatelly dly narydov
-        fakeVacation.addListener(new ListChangeListener<Vacation>() {
-            @Override
-            public void onChanged(Change<? extends Vacation> c) {
-                System.out.println("izmenenie v otpuskax");
-            }
-        }); // dobavlenie slushatelly dly otpuskov
-
-        fakePeople.addListener(new ListChangeListener<People>() {
-            @Override
-            public void onChanged(Change<? extends People> c) {
-                System.out.println("izmenenie v cheloveakh");
-            }
-        }); //dbavlenie zavisimoste dly
-        for (People p:fakePeople) {
-            System.out.println(p);
-        }
         arrControler[0]=new ChangeInfoPerson();
 
         System.out.println("++++++++++++");
@@ -186,10 +164,12 @@ public class FakeRepositori {
                 Table table = db.getTable(arr[i]);
                 for ( Row row : table) {
                     table.deleteRow(row);
+                    table.reset();
                 }
             }
         }catch ( Exception e){
             e.printStackTrace();
+            System.out.println("======================oshobka pri udalenii");
         }
     }
 
@@ -209,7 +189,6 @@ public class FakeRepositori {
             Duty duty;
             for (int i = 0; i <fakeDuty.size() ; i++) {
                 duty = fakeDuty.get(i);
-                System.out.println(duty);
                 table.addRow(duty.getId(), duty.getData(), duty.isCertified());
             }
 
@@ -224,5 +203,4 @@ public class FakeRepositori {
             e.printStackTrace();
         }
     }
-
 }

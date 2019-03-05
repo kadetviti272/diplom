@@ -46,8 +46,6 @@ public class AdminInfoList {
 
     @FXML
     private void initialize() throws IOException {
-        FakeRepositori.clinDb();
-        FakeRepositori.wraitDb();
         tablePerson.setItems(FakeRepositori.fakePeople);
         nameColum.setCellValueFactory(person -> person.getValue().rangProperty());
         sonameColum.setCellValueFactory(person -> person.getValue().sonameProperty().concat(" ").concat(person.getValue().nameProperty()));
