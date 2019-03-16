@@ -13,8 +13,9 @@
             <items>
                   <MenuItem fx:id="grafduty" mnemonicParsing="false" text="Графык чергувань" />
                   <MenuItem fx:id="personcard" mnemonicParsing="false" text="Особиста картка" />
-              <MenuItem fx:id="usermasenger" mnemonicParsing="false" text="файл" />
-                  <MenuItem mnemonicParsing="false" text="Вихід" />
+              <MenuItem fx:id="usermasenger" mnemonicParsing="false" text="Месенджер" />
+                  <MenuItem fx:id="file" mnemonicParsing="false" text="Файли" />
+                  <MenuItem fx:id="exit" mnemonicParsing="false" text="Вихід" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">

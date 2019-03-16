@@ -20,7 +20,7 @@
     -fx-background-color: rgba(0,0,0,.1);
     -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.08),2,1.0,-0.5,-0.5);
     -fx-background-insets: -5 -10 -5 -5;
-    -fx-shape: "M 100, 0 h300 a30,30 0 0 1 30,30 v60 a30,30 0 0 1 -30,30 h-300 a30,30 0 0 1 -30,-30 v-60 a30,30 0 0 1 30,-30 z";
+    -fx-shape: "M 100, 0 h300 a30,30 000 0 1 30,30 v60 a30,30 0 0 1 -30,30 h-300 a30,30 0 0 1 -30,-30 v-60 a30,30 0 0 1 30,-30 z";
 
 }
 

@@ -2,7 +2,6 @@ package Models;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,10 +27,29 @@ public class GeneratorDuty {
         FakeRepositori.fakeDuty.removeAll(tt);
         FakeRepositori.fakeDuty.addAll(tempMansDuty);
         return FXCollections.observableArrayList(tempMansDuty);
+
     }
 
     public static ArrayList<Duty> getListDutiMans(Mans mans){
-        return (ArrayList<Duty>) FakeRepositori.fakeDuty.stream().filter(duty->duty.getData().getMonth()+1 == mans.getCountmans()).collect(Collectors.toList());
+        return (ArrayList<Duty>) FakeRepositori.fakeDuty.stream().filter(duty->duty.getData().getMonth()+1 == mans.getCountmans()).sorted((p1,p2) -> (int) (p1.getDate().getTime()-p2.getDate().getTime())).collect(Collectors.toList());
     }
+
+    public static void RemovePerson( People peopleRemov){
+        ArrayList<Duty> tt = (ArrayList<Duty>) FakeRepositori.fakeDuty.stream().filter(duty -> duty.getPeople()== peopleRemov).collect(Collectors.toList());
+        FakeRepositori.fakeDuty.removeAll(tt);
+        FakeRepositori.fakePeople.removeAll(peopleRemov);
+    }
+
+    public static void RemovePerson2( People peopleRemov){
+        ArrayList<Duty> tt = (ArrayList<Duty>) FakeRepositori.fakeDuty.stream().filter(duty -> duty.getPeople()== peopleRemov).collect(Collectors.toList());
+        for (int i = 0; i <tt.size() ; i++) {
+            tt.get(i).setId(0);
+            tt.get(i).setPeople(new People());
+            tt.get(i).setCertified(false);
+        }
+        FakeRepositori.fakePeople.removeAll(peopleRemov);
+    }
+
+
 
 }

@@ -1,5 +1,6 @@
 package Models;
 import Controllers.admin.ChangeInfoPerson;
+import Controllers.admin.RedactPerson;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.healthmarketscience.jackcess.*;
@@ -11,7 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class FakeRepositori {
@@ -20,9 +23,9 @@ public class FakeRepositori {
     public static ObservableList<Duty> fakeDuty = FXCollections.observableArrayList();
     public static ObservableList<Vacation> fakeVacation = FXCollections.observableArrayList();
     public static ObservableList<People> fakePeople = FXCollections.observableArrayList();
-    public static Object[] arrControler=new Object[1];
+    public static Object[] arrControler=new Object[2];
     public static int idPersonAutoriz;
-    public static Type itemsMapType = new TypeToken<Map<Boolean,String>>() {}.getType();
+    public static Type itemsMapType = new TypeToken<List<Masage>>() {}.getType();
     public static People autorizadPeopl;
     public static boolean fclin = false;
 
@@ -30,14 +33,14 @@ public class FakeRepositori {
     static {
         try {
             ReadDB();
-            clinDb();
-            wraitDb();
+//            clinDb();
+//            wraitDb();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         binding();
-        arrControler[0]=new ChangeInfoPerson();
-
+        arrControler[0]=new RedactPerson();
         System.out.println("++++++++++++");
     }
 
@@ -71,8 +74,9 @@ public class FakeRepositori {
                         case "rang":
                             tempPeople.setRang((String) row.get(columnName));
                             break;
-                        case  "text":
-                            tempMasanger.setMasageHistoru(new Gson().fromJson((String)row.get(columnName),itemsMapType));
+                        case "text":
+                            System.out.println((String)row.get(columnName));
+                            tempMasanger.setMasageHistory(new Gson().fromJson((String)row.get(columnName),itemsMapType));
                           //  System.out.println(tempMasanger.getText());
                             break;
                         case  "inmasage":
@@ -175,13 +179,12 @@ public class FakeRepositori {
 
     public static void wraitDb() throws IOException {
         try  (Database db = DatabaseBuilder.open(new File("db.mdb"))) {
-
             Table table = db.getTable("user");
             People people;
             String str;
             for (int j = 0; j <fakePeople.size() ; j++) {
                 people = fakePeople.get(j);
-                str = new Gson().toJson(people.getMassenger().getMasageHistoru());
+                str = new Gson().toJson(people.getMassenger().getMasageHistory());
                 table.addRow(people.getPassword(), people.getLogin(), people.getName(), people.getSoname(), people.getFname(), people.getRang(), people.getId(), people.getMassenger().isOutcoming(), people.getMassenger().isOutcoming(), str);
             }
 
@@ -201,6 +204,16 @@ public class FakeRepositori {
 
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public static void removePerson(People peopleRemove) throws IOException {
+        try(Database db = DatabaseBuilder.open(new File("db.mdb"))) {
+            Table table = db.getTable("user");
+            Cursor cursor = CursorBuilder.createCursor(table);
+            if(cursor.findFirstRow(Collections.singletonMap("id",peopleRemove.getId()))){
+               table.deleteRow(cursor.getCurrentRow());
+            }
         }
     }
 }

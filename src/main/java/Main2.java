@@ -1,11 +1,14 @@
 import Models.*;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.fest.util.Maps;
 import pl.jsolve.templ4docx.core.Docx;
 import pl.jsolve.templ4docx.core.VariablePattern;
 import pl.jsolve.templ4docx.variable.TextVariable;
 import pl.jsolve.templ4docx.variable.Variables;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -13,13 +16,58 @@ import java.util.*;
 public class Main2 {
 
     public static void main(String[] args) throws IOException, ParseException {
-        System.out.println("Ss");
-//       HashMap<String, String> a = new HashMap<>();
-//        System.out.println(new Gson().toJson(a));
-//        for (Map.Entry<String,String> ss :a) {
-//            ss.getValue();
-//            ss.getKey();
+//        System.out.println("Ss");
+//        Mans mans = Mans.April;
+//        Calendar calendar = Calendar.getInstance();
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy--HH:mm:ss "+ Mans.April.toString());
+//        System.out.println(dateFormat.format(calendar.getTime()));
+//        System.out.println(  mans.toString()  + new SimpleDateFormat(" dd/MM/yyyy -- HH:mm:ss").format(Calendar.getInstance().getTime())+".docx");
+
+        ArrayList<String>f = new ArrayList<>();
+        f.add(new String("aa"));
+        f.add(new String("ff"));
+        String b = f.get(0);
+        b=null;
+        System.out.println(f);
+
+
+        Type itemsMapType = new TypeToken<List<Masage>>() {}.getType();
+        List<Masage> ss= new ArrayList<>();
+        System.out.println(new Gson().toJson(ss));
+        System.out.println("===========");
+
+
+
+//        Hashtable<Boolean, String> ss = new Hashtable<>();
+//        ss.put(false,"Sss");
+//        ss.put(false,"sss");
+//        ss.put(true,"false");
+//        for (Map.Entry<Boolean,String> g :ss.entrySet()) {
+//            System.out.println(g.getValue() + "  " + g.getKey());
 //        }
+//
+
+        HashMap<Boolean, String> a = new HashMap<>();
+        ArrayList<Masage> sob = new ArrayList<>();
+        sob.add(new Masage( "sss" , false));
+        sob.add(new Masage( "sss" , false));
+        sob.add(new Masage( "sss" , false));
+        sob.add(new Masage( "sss" , false));
+        sob.add(new Masage( "sss" , false));
+        System.out.println(new Gson().toJson(sob));
+        System.out.println(new Gson().toJson(sob));
+        System.out.println(new Gson().toJson(sob));
+
+
+        System.out.println(new Gson().toJson(a));
+        a.put(false,"Sss");
+        a.put(false,"sss");
+        a.put(true,"false");
+        for (Map.Entry<Boolean,String> bn :a.entrySet()) {
+            System.out.println(bn.getValue() + "  " + bn.getKey());
+        }
+
+
 //
 //
 //        ArrayList<People> people = new ArrayList<>();
@@ -28,7 +76,8 @@ public class Main2 {
 //        ArrayList<Duty> duties = new ArrayList<>();
 //        duties.add(new Duty());
 //        people.get(0).getListDuti().add(duties.get(0));
-//
+
+
 //        people.clear();
 //        System.out.println(duties.get(0).getPeople().toString());
 

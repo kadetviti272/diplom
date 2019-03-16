@@ -1,5 +1,6 @@
 package Controllers.admin;
 import Models.FakeRepositori;
+import Models.Masage;
 import Models.People;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static Models.FakeRepositori.clinDb;
@@ -54,11 +56,11 @@ public class AdminMasengger {
 
 
             ArrayList<HBox> hBoxes = new ArrayList<>();
-            for(Map.Entry<Boolean,String> map : mesegPeople.getMassenger().getMasageHistoru().entrySet() ){
-                if(!map.getKey()){
-                    wisiblAdminmasage(map.getValue());
-                }else if (map.getKey()){
-                    wisibleUserMasage(map.getValue());
+            for( Masage masage : mesegPeople.getMassenger().getMasageHistory() ){
+                if(!masage.isStatus()){
+                    wisiblAdminmasage(masage.getText());
+                }else if (masage.isStatus()){
+                    wisibleUserMasage(masage.getText());
                 }
             }
         }
@@ -91,23 +93,23 @@ public class AdminMasengger {
         lineText.setText(lineText.getText().trim());
         if(!lineText.equals("") && mesegPeople!=null ){
             wisiblAdminmasage(lineText.getText());
-            mesegPeople.getMassenger().getMasageHistoru().put(false,lineText.getText());
+            mesegPeople.getMassenger().getMasageHistory().add(new Masage(lineText.getText(),false));
         }
         lineText.setText("");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    while (FakeRepositori.fclin);
-                    FakeRepositori.fclin = true;
-                    clinDb();
-                    wraitDb();
-                    FakeRepositori.fclin = false;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    while (FakeRepositori.fclin);
+//                    FakeRepositori.fclin = true;
+//                    clinDb();
+//                    wraitDb();
+//                    FakeRepositori.fclin = false;
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
     }
 
     private void wisibleUserMasage(String masage){

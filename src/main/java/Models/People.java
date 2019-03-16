@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class People {
+
+
     private int id;
     private String password;
     private String login;
@@ -15,15 +17,23 @@ public class People {
     private List<Duty> listDuti= new ArrayList<Duty>();
     private List<Vacation> listVakation=new ArrayList<Vacation>();
     private Massenger massenger;
+    /*
+       private String call;
+       private String posada;  //Prtod Inli
+
+
+    */
 
     public People(){
-        this.password = "Net tagogo";
-        this.login = "Net takogo";
-        this.name = new SimpleStringProperty("Net tagogo");
-        this.soname= new SimpleStringProperty("Net tagogo") ;
-        this.fname= new SimpleStringProperty("Net tagogo");
-        this.rang= new SimpleStringProperty("Net tagogo");
+
+        this.password = "";
+        this.login = "";
+        this.name = new SimpleStringProperty("");
+        this.soname= new SimpleStringProperty("") ;
+        this.fname= new SimpleStringProperty("");
+        this.rang= new SimpleStringProperty("");
         this.massenger = new Massenger();
+
     }
 
     public People(int id, String login, String password, String name, String soname, String fname, String rang, Massenger massenger ) {

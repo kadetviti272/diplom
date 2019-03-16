@@ -1,26 +1,14 @@
 package Models;
-
-import javafx.beans.binding.MapBinding;
-
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Massenger {
     private boolean incoming;
     private boolean outcoming;
-    private Map<Boolean,String> masageHistoru;
 
+
+    private List<Masage> masageHistory;
     public Massenger(){
-        masageHistoru = new HashMap<>();
-    }
-
-    public Map<Boolean, String> getMasageHistoru() {
-        return masageHistoru;
-    }
-
-    public void setMasageHistoru(Map<Boolean, String> masageHistoru) {
-        this.masageHistoru = masageHistoru;
+        masageHistory = new ArrayList<Masage>();
     }
 
     public boolean isIncoming() {
@@ -39,12 +27,11 @@ public class Massenger {
         this.outcoming = outcoming;
     }
 
-    @Override
-    public String toString() {
-        return "Massenger{" +
-                "incoming=" + incoming +
-                ", outcoming=" + outcoming +
-                ", masageHistoru=" + masageHistoru +
-                '}';
+    public List<Masage> getMasageHistory() {
+        return masageHistory;
+    }
+
+    public void setMasageHistory(List<Masage> masageHistory) {
+        this.masageHistory = masageHistory;
     }
 }

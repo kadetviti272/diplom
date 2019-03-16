@@ -98,63 +98,60 @@ public class Authorization {
             @Override
             public void onChanged(Change<? extends Duty> c) {
                 System.out.println("da dodano narydov");
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            while (fclin);
-                            fclin = true;
-                            clinDb();
-                            wraitDb();
-                            fclin = false;
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
-
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            while (fclin);
+//                            fclin = true;
+//                            clinDb();
+//                            wraitDb();
+//                            fclin = false;
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }).start();
             }
         });
         fakeVacation.addListener(new ListChangeListener<Vacation>() {
-
             @Override
             public void onChanged(Change<? extends Vacation> c) {
-                System.out.println("izmenenie v otpuskax");
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            while (fclin);
-                            fclin = true;
-                            clinDb();
-                            wraitDb();
-                            fclin = false;
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
+//                System.out.println("izmenenie v otpuskax");
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            while (fclin);
+//                            fclin = true;
+//                            clinDb();
+//                            wraitDb();
+//                            fclin = false;
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }).start();
             }
         }); // dobavlenie slushatelly dly otpuskov
         fakePeople.addListener(new ListChangeListener<People>() {
             @Override
             public void onChanged(Change<? extends People> c) {
                 System.out.println("izmenenie v cheloveakh");
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            while (fclin);
-                            fclin = true;
-                            clinDb();
-                            wraitDb();
-                            fclin = false;
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
-
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            while (fclin);
+//                            fclin = true;
+//                            clinDb();
+//                            wraitDb();
+//                            fclin = false;
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }).start();
             }
         });
     }
@@ -172,7 +169,7 @@ public class Authorization {
                 break;
             case 2:
                 System.out.println("nachalnik");
-                url= "/Wievs/cheff/glavaPanel.fxml";
+                url= "/Wievs/cheff/glavaMain.fxml";
                 showWindow(url);
                 break;
             case 3:

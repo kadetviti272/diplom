@@ -1,6 +1,8 @@
 package Controllers.admin;
 
+import Models.Duty;
 import Models.FakeRepositori;
+import Models.GeneratorDuty;
 import Models.People;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,9 +14,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.poi.ss.usermodel.DateUtil;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AdminInfoList {
 
@@ -43,7 +48,7 @@ public class AdminInfoList {
 
     private People sendPeople;
 
-
+    private RedactPerson redactPerson = new RedactPerson();
     @FXML
     private void initialize() throws IOException {
         tablePerson.setItems(FakeRepositori.fakePeople);
@@ -62,8 +67,6 @@ public class AdminInfoList {
     }
 
 
-
-
     public void presTable(MouseEvent mouseEvent) {
         if ((People) tablePerson.getSelectionModel().getSelectedItem() != null) {
             sendPeople = (People) tablePerson.getSelectionModel().getSelectedItem();
@@ -75,33 +78,27 @@ public class AdminInfoList {
     }
 
     public void clicaddButton(ActionEvent actionEvent) throws IOException {
-            final Stage primaryStage = new Stage();
-            primaryStage.setOnCloseRequest(event -> {
-                System.out.println("da zakrl");
-            });
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Wievs/admin/infoperson.fxml"));
-            fxmlLoader.setController(FakeRepositori.arrControler[0]);
-            ((ChangeInfoPerson)FakeRepositori.arrControler[0]).setPeople(new People());
-            Parent root = fxmlLoader.load();
-            primaryStage.setTitle("Hello World");
-            primaryStage.setScene(new Scene(root, 800 , 500));
-            primaryStage.show();
 
     }
     
     public void clicdellbutton(ActionEvent actionEvent) {
          if((People)tablePerson.getSelectionModel().getSelectedItem()!=null) {
-             People people = (People) tablePerson.getSelectionModel().getSelectedItem();
-             for (int i = 0; i < people.getListDuti().size(); i++) {
-                 people.getListDuti().get(i).setId(0);
-             }
-             FakeRepositori.fakePeople.remove(people);
+             GeneratorDuty.RemovePerson((People)tablePerson.getSelectionModel().getSelectedItem());
          }
     }
 
-    public void clicapdeit(ActionEvent actionEvent) {
-
+    public void clicapdeit(ActionEvent actionEvent) throws IOException {
+        showWindow("/Wievs/admin/RedctorPanelAdmin.fxml",sendPeople);
     }
 
-
+    private void showWindow (String URL,People people) throws IOException {
+        Stage primaryStage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(URL));
+        ((RedactPerson)FakeRepositori.arrControler[0]).setStage(primaryStage).setPeople(people);
+        fxmlLoader.setController(FakeRepositori.arrControler[0]);
+        Parent root = fxmlLoader.load();
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
+        primaryStage.setScene(new Scene(root,700,400));
+        primaryStage.showAndWait();
+    }
 }

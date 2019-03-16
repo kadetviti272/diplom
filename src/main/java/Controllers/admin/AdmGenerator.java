@@ -1,11 +1,10 @@
 package Controllers.admin;
 
-import Models.FakeRepositori;
-import Models.GeneratorDuty;
-import Models.Duty;
-import Models.Mans;
+import Models.*;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,9 +25,12 @@ public class AdmGenerator {
     TableColumn<Duty, String> columdate;
     @FXML
     TableColumn<Duty, Boolean> columzaveren;
+    @FXML
+    TableColumn<People,String> columChange;
+    @FXML
+    TableView <People> tableChange;
 
-
-
+    TableView.TableViewSelectionModel<Duty> selectionModel;
 
     @FXML
     private void initialize() throws ParseException, IOException {
@@ -48,17 +50,33 @@ public class AdmGenerator {
 
         columdate.setCellValueFactory( t -> new SimpleStringProperty( GeneratorDuty.dateFormat.format(t.getValue().getData())));
 
+        columChange.setCellValueFactory(t-> t.getValue().nameProperty().concat(" ").concat(t.getValue().sonameProperty()));
+        selectionModel = tablenaryd.getSelectionModel();
+        selectionModel.selectedItemProperty().addListener(new ChangeListener<Duty>() {
+            @Override
+            public void changed(ObservableValue<? extends Duty> observable, Duty oldValue, Duty newValue) {
+                if(newValue==null){
+                    System.out.println("nuul");
+                    tableChange.setItems(null);
+                }
+                else{
+                    tableChange.setItems(FakeRepositori.fakePeople);
+                    System.out.println("000");
+                }
+            }
+        });
     }
 
     public void generButton(ActionEvent actionEvent) throws ParseException {
-            tablenaryd.setItems(GeneratorDuty.GeneratorDutyMans(comboBox.getValue()));
+        tablenaryd.setItems(GeneratorDuty.GeneratorDutyMans(comboBox.getValue()));
     }
 
-    public void prestable(MouseEvent mouseEvent) {
+    public void changeDuty(ActionEvent actionEvent) {
 
+        System.out.println(tablenaryd.getSelectionModel().getSelectedItem().getPeople().getName());
+        System.out.println(tableChange.getSelectionModel().getSelectedItem().getName());
+        tablenaryd.getSelectionModel().getSelectedItem().setPeople(tableChange.getSelectionModel().getSelectedItem());
+        tablenaryd.refresh();
     }
 
-    public void zamenabutton(ActionEvent actionEvent) {
-
-    }
 }
