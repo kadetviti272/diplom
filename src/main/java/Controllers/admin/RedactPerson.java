@@ -1,21 +1,17 @@
 package Controllers.admin;
 
-import Controllers.User.UserMain;
-import Models.FakeRepositori;
+import Models.GeneratorDuty;
 import Models.People;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.stage.Modality;
+
 import javafx.stage.Stage;
 
-import java.io.IOException;
+
 
 
 public class RedactPerson {
@@ -38,6 +34,10 @@ public class RedactPerson {
     TextField fDate;
     @FXML
     TextField lDate;
+    @FXML
+    TextField tLogin;
+    @FXML
+    TextField tPassword;
 
     Stage stage;
     People people;
@@ -62,16 +62,21 @@ public class RedactPerson {
     // Солдат Ст.солдат Мол.сержант Сержант Ст.сержант Старшина Прапорщик Ст.прапорщик Мол.лейтенант Лейтенант Ст.лейтенант Капітан Майор Підполковник Полковник
     @FXML
     private void initialize() {
-
+        tRang.setVisibleRowCount(6);
         tRang.setItems(FXCollections.observableArrayList("Солдат", "Ст.солдат", "Мол.сержант", "Сержант", "Ст.сержант", "Старшина", "Прапорщик", "Ст.прапорщик", "Мол.лейтенант", "Лейтенант", "Ст.лейтенант", "Капітан", "Майор", "Підполковник", "Полковник"));
-        tPos.setItems(FXCollections.observableArrayList("Викладач", "Управлыння"));
+        tPos.setItems(FXCollections.observableArrayList("Викладач", "Управління"));
+        tRang.setValue(people.getRang());
+        tPos.setValue(people.getPosition());
+        tLogin.setText(people.getLogin());
+        tPassword.setText(people.getPassword());
         System.out.println("init");
         if (people == null) {
             people = new People();
         } else {
-            tBistDay.setText("24/09/1999");
+            tBistDay.setText(GeneratorDuty.dateFormat.format(people.getdBirsday()));
             tName.setText(people.getSoname() + " " + people.getSoname() + " " + people.getFname());
-            tCall.setText("+380987211728");
+            tCall.setText(people.getCall());
+            tRang.setVisibleRowCount(6);
         }
     }
 
@@ -99,4 +104,5 @@ public class RedactPerson {
         System.out.println("ne dodan ne izmeneno");
         stage.close();
     }
+
 }

@@ -22,7 +22,6 @@ import java.util.Map;
 import static Models.FakeRepositori.clinDb;
 import static Models.FakeRepositori.wraitDb;
 
-
 public class AdminMasengger {
 
     @FXML
@@ -54,7 +53,6 @@ public class AdminMasengger {
             mesegPeople = (People)table.getSelectionModel().getSelectedItem();
             label.setText(mesegPeople.getName()+" "+mesegPeople.getSoname());
 
-
             ArrayList<HBox> hBoxes = new ArrayList<>();
             for( Masage masage : mesegPeople.getMassenger().getMasageHistory() ){
                 if(!masage.isStatus()){
@@ -63,6 +61,7 @@ public class AdminMasengger {
                     wisibleUserMasage(masage.getText());
                 }
             }
+
         }
     }
 

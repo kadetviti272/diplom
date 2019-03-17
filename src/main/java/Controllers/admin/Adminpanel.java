@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,7 +30,6 @@ public class Adminpanel {
 
     public void clicGeneratorMeny(ActionEvent actionEvent) throws IOException {
         borderPanel.setCenter(FXMLLoader.load(getClass().getResource("/Wievs/admin/AdminGeneratordDuty.fxml")));
-
     }
 
     public void cliclMesegMeny(ActionEvent actionEvent) throws IOException {

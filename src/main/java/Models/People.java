@@ -1,7 +1,10 @@
 package Models;
 import javafx.beans.property.SimpleStringProperty;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class People {
@@ -17,6 +20,11 @@ public class People {
     private List<Duty> listDuti= new ArrayList<Duty>();
     private List<Vacation> listVakation=new ArrayList<Vacation>();
     private Massenger massenger;
+
+    private String position;
+    private Date dBirsday;
+    private String call;
+    private String image;
     /*
        private String call;
        private String posada;  //Prtod Inli
@@ -32,7 +40,11 @@ public class People {
         this.soname= new SimpleStringProperty("") ;
         this.fname= new SimpleStringProperty("");
         this.rang= new SimpleStringProperty("");
+
         this.massenger = new Massenger();
+        this.call = "";
+        this.image ="";
+        this.dBirsday = new Date();
 
     }
 
@@ -53,15 +65,30 @@ public class People {
                 "id=" + id +
                 ", password='" + password + '\'' +
                 ", login='" + login + '\'' +
-                ", name=" + name.getValue() +
-                ", soname=" + soname.getValue() +
-                ", fname=" + fname.getValue() +
-                ", rang=" + rang.getValue() +
+                ", name=" + name +
+                ", soname=" + soname +
+                ", fname=" + fname +
+                ", rang=" + rang +
+                ", listDuti=" + listDuti +
+                ", listVakation=" + listVakation +
+                ", massenger=" + massenger +
+                ", position='" + position + '\'' +
+                ", dBirsday=" + GeneratorDuty.dateFormat.format(dBirsday)  +
+                ", call='" + call + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 
     public String toString2(){
         return  rang.getValue()+" "+name.getValue()+" "+soname.getValue()+" "+fname.getValue();
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public Massenger getMassenger() {
@@ -138,6 +165,30 @@ public class People {
 
     public SimpleStringProperty rangProperty() {
         return rang;
+    }
+
+    public Date getdBirsday() {
+        return dBirsday;
+    }
+
+    public void setdBirsday(Date dBirsday) {
+        this.dBirsday = dBirsday;
+    }
+
+    public String getCall() {
+        return call;
+    }
+
+    public void setCall(String call) {
+        this.call = call;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setRang(String rang) {

@@ -72,7 +72,7 @@ public class AdminInfoList {
             sendPeople = (People) tablePerson.getSelectionModel().getSelectedItem();
             // rutian nada nowue poly dly otobrajeniy;
           //  System.out.println(sendPeople.toString2());
-            System.out.println( sendPeople.getName() + " "+ sendPeople.getRang());
+            System.out.println( sendPeople);
             initLabel();
         }
     }
@@ -98,6 +98,7 @@ public class AdminInfoList {
         fxmlLoader.setController(FakeRepositori.arrControler[0]);
         Parent root = fxmlLoader.load();
         primaryStage.initModality(Modality.APPLICATION_MODAL);
+        primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root,700,400));
         primaryStage.showAndWait();
     }

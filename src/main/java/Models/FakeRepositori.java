@@ -1,5 +1,6 @@
 package Models;
-import Controllers.admin.ChangeInfoPerson;
+
+
 import Controllers.admin.RedactPerson;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -12,10 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FakeRepositori {
 
@@ -28,7 +26,7 @@ public class FakeRepositori {
     public static Type itemsMapType = new TypeToken<List<Masage>>() {}.getType();
     public static People autorizadPeopl;
     public static boolean fclin = false;
-
+    public static List<Masage> chaffMasanger = new ArrayList<>();
 
     static {
         try {
@@ -84,6 +82,19 @@ public class FakeRepositori {
                             break;
                         case  "outmasage":
                             tempMasanger.setOutcoming(((Boolean) row.get(columnName)).booleanValue());
+                            break;
+                        case  "call":
+                            tempPeople.setCall((String) row.get(columnName));
+                            break;
+                        case "dBirsday":
+                            tempPeople.setdBirsday((Date) row.get(columnName));
+                            break;
+                        case "image":
+                            tempPeople.setImage((String) row.get(columnName));
+                            break;
+                        case "position":
+                            System.out.println("----------------------------------");
+                            tempPeople.setPosition((String) row.get(columnName));
                             break;
                     }
                 }
