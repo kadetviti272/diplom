@@ -26,7 +26,8 @@ public class FakeRepositori {
     public static Type itemsMapType = new TypeToken<List<Masage>>() {}.getType();
     public static People autorizadPeopl;
     public static boolean fclin = false;
-    public static List<Masage> chaffMasanger = new ArrayList<>();
+    public static Massenger chaffMasanger = new Massenger();
+    //public static List<Masage> chaffMasanger = new ArrayList<>();
 
     static {
         try {

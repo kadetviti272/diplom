@@ -23,13 +23,18 @@ import static Models.FakeRepositori.wraitDb;
 
 public class UserMassenger {
 
+
     @FXML
     VBox chatBox;
     @FXML
     TextField lineText;
 
+    People autorizPeople;
     @FXML
     private void initialize(){
+        autorizPeople = FakeRepositori.autorizadPeopl;
+        autorizPeople.getMassenger().setOutcoming(false);  // adminu nada prochitat da
+
         System.out.println();
         System.out.println(FakeRepositori.autorizadPeopl.getMassenger().toString());
         if( FakeRepositori.autorizadPeopl !=null && FakeRepositori.autorizadPeopl.getMassenger().getMasageHistory()!=null ){
@@ -50,6 +55,7 @@ public class UserMassenger {
             wisiblMaymasage(lineText.getText());
             FakeRepositori.autorizadPeopl.getMassenger().getMasageHistory().add(new Masage( lineText.getText() , true));
             lineText.setText("");
+            autorizPeople.getMassenger().setIncoming(true);
         }
         System.out.println("++"+lineText.getText());
 //        new Thread(new Runnable() {
@@ -106,5 +112,6 @@ public class UserMassenger {
         hbox.getChildren().add(flow);
         hbox.getStyleClass().add("hbox");
         Platform.runLater(() -> chatBox.getChildren().addAll(hbox));
+
     }
 }

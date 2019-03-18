@@ -71,6 +71,7 @@ public class AdminMasengger {
                     wisibleUserMasage(masage.getText());
                 }
             }
+            mesegPeople.getMassenger().setIncoming(false); // nada chitat ne
         }
     }
 
@@ -104,6 +105,7 @@ public class AdminMasengger {
             if(mesegPeople!=null && !writeAdmin){
                 wisiblAdminmasage(lineText.getText());
                 mesegPeople.getMassenger().getMasageHistory().add(new Masage(lineText.getText(),false));
+                mesegPeople.getMassenger().setOutcoming(true); //useru tre chitatu daa
             }
             if(writeAdmin){
                 wisiblAdminmasage(lineText.getText());

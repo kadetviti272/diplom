@@ -5,8 +5,8 @@ public class Massenger {
     private boolean incoming;
     private boolean outcoming;
 
-
     private List<Masage> masageHistory;
+
     public Massenger(){
         masageHistory = new ArrayList<Masage>();
     }
