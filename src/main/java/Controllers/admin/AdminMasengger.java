@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -36,23 +37,32 @@ public class AdminMasengger {
     VBox chatBox;
     @FXML
     TextField lineText;
+    @FXML
+    Button nach;
+
 
     private People mesegPeople;
+    private boolean writeAdmin=false;
 
     @FXML
     private void initialize(){
         table.setItems(FakeRepositori.fakePeople);
         columPerson.setCellValueFactory(t->t.getValue().rangProperty().concat(" ").concat(t.getValue().nameProperty().concat(" ").concat(t.getValue().sonameProperty())) );
-        chatBox.getStyleClass().add("chatBox");
+       chatBox.getStyleClass().add("chatBox");
+       //
+        //
+        // nach.setBorder(Border.EMPTY);
+
     }
 
     @FXML
     public void changePeople(MouseEvent mouseEvent) {
+        writeAdmin = false;
         if((People)table.getSelectionModel().getSelectedItem()!=null){
             Platform.runLater(() -> chatBox.getChildren().clear());
             mesegPeople = (People)table.getSelectionModel().getSelectedItem();
             label.setText(mesegPeople.getName()+" "+mesegPeople.getSoname());
-
+            //table.setSelectionModel(null);
             ArrayList<HBox> hBoxes = new ArrayList<>();
             for( Masage masage : mesegPeople.getMassenger().getMasageHistory() ){
                 if(!masage.isStatus()){
@@ -61,9 +71,9 @@ public class AdminMasengger {
                     wisibleUserMasage(masage.getText());
                 }
             }
-
         }
     }
+
 
     private void wisiblAdminmasage(String masage){
 
@@ -89,10 +99,15 @@ public class AdminMasengger {
 
     @FXML
     public void sendMasage(ActionEvent actionEvent) {
-        lineText.setText(lineText.getText().trim());
-        if(!lineText.equals("") && mesegPeople!=null ){
-            wisiblAdminmasage(lineText.getText());
-            mesegPeople.getMassenger().getMasageHistory().add(new Masage(lineText.getText(),false));
+        if(!lineText.getText().trim().equals("")){
+
+            if(mesegPeople!=null && !writeAdmin){
+                wisiblAdminmasage(lineText.getText());
+                mesegPeople.getMassenger().getMasageHistory().add(new Masage(lineText.getText(),false));
+            }
+            if(writeAdmin){
+                wisiblAdminmasage(lineText.getText());
+            }
         }
         lineText.setText("");
 //        new Thread(new Runnable() {
@@ -131,5 +146,11 @@ public class AdminMasengger {
         hbox.getChildren().add(flow);
         hbox.getStyleClass().add("hbox");
         Platform.runLater(() -> chatBox.getChildren().addAll(hbox));
+    }
+
+    @FXML
+    public void nachal(ActionEvent actionEvent) {
+        writeAdmin = true;
+        label.setText("Начальник");
     }
 }

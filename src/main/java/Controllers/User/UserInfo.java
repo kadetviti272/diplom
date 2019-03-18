@@ -23,6 +23,8 @@ public class UserInfo {
     @FXML
     Label lPhone;
     @FXML
+    Label lPosition;
+    @FXML
     Label lVacatoin;
     @FXML
     ImageView photo;
@@ -32,25 +34,31 @@ public class UserInfo {
     private void initialize(){
         if(FakeRepositori.autorizadPeopl!=null){
             people = FakeRepositori.autorizadPeopl;
-            lFname.setText(people.getName());
+            lFname.setText(people.getFname());
             lName.setText(people.getName());
             lSoname.setText(people.getSoname());
             lRang.setText(people.getRang());
-            lPhone.setText("dodel");
-            lVacatoin.setText(initVacation());
+            lPhone.setText(people.getCall());
+            lPosition.setText(people.getPosition());
+            lVacatoin.setText( initVacation());
+
+
+            System.out.println(people.getListDuti().size()+"  dutu" + people.getListVakation().size()+"  vacation");
         }else {
             System.out.println("net persona avtoriz");
         }
-
     }
 
 
     private String initVacation(){
-
+        System.out.println("--------------");
         String text = "";
-        for (int i = 0; i <FakeRepositori.autorizadPeopl.getListVakation().size() ; i++) {
-            text.concat(text.concat(FakeRepositori.dateFormat.format(FakeRepositori.autorizadPeopl.getListVakation().get(i).getFirstData()))+ " - " + FakeRepositori.dateFormat.format(FakeRepositori.autorizadPeopl.getListVakation().get(i).getLastData()).concat("\n"));
+        for (int i = 0; i < people.getListVakation().size() ; i++) {
+            text+=FakeRepositori.dateFormat.format(people.getListVakation().get(i).getFirstData())+ " - " + FakeRepositori.dateFormat.format(people.getListVakation().get(i).getFirstData())+"\n";
         }
+        System.out.println(text);
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
+
         return text;
 
     }

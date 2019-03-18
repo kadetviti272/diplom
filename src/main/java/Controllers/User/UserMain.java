@@ -4,6 +4,8 @@ import Models.People;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -30,6 +32,7 @@ public class UserMain {
     private People people;
 
     FileChooser fileChooser;
+    Stage primaryStage;
 
     @FXML
     private void initialize() throws IOException {
@@ -50,11 +53,24 @@ public class UserMain {
         } );
 
         usermasenger.setOnAction(event -> {
-            try {
-                borderPanel.setCenter(FXMLLoader.load(getClass().getResource("/Wievs/user/userMassenger.fxml")));
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            if(primaryStage ==null){
+                primaryStage = new Stage();
+                primaryStage.setResizable(false);
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Wievs/user/userMassenger.fxml"));
+                Parent root = null;
+                try {
+                    root = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                primaryStage.setScene(new Scene(root,700,400));
+                primaryStage.show();
+            }else {
+                primaryStage.hide();
+                primaryStage.show();
             }
+
         });
 
         personcard.setOnAction( event -> {
