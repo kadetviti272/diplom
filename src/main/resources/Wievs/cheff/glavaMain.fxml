@@ -15,10 +15,9 @@
                   <MenuItem mnemonicParsing="false" onAction="#exit" text="Вихід" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" onAction="#mainWindow" text="Головне вікно" />
-          <Menu mnemonicParsing="false" text="Месенджер">
+          <Menu mnemonicParsing="false" text="Вікна">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#Masanger" text="Unspecified Action" />
+                  <MenuItem mnemonicParsing="false" onAction="#Masanger" text="Месенджер" />
                </items></Menu>
         </menus>
       </MenuBar>

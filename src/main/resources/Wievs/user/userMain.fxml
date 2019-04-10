@@ -9,24 +9,18 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="файл">
+          <Menu mnemonicParsing="false" text="Файл">
             <items>
-                  <MenuItem fx:id="grafduty" mnemonicParsing="false" text="Графык чергувань" />
-                  <MenuItem fx:id="personcard" mnemonicParsing="false" text="Особиста картка" />
-              <MenuItem fx:id="usermasenger" mnemonicParsing="false" text="Месенджер" />
                   <MenuItem fx:id="file" mnemonicParsing="false" text="Файли" />
                   <MenuItem fx:id="exit" mnemonicParsing="false" text="Вихід" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
+          <Menu mnemonicParsing="false" text="Вікна">
+               <items>
+                  <MenuItem fx:id="grafduty" mnemonicParsing="false" text="Графык чергувань" />
+                  <MenuItem fx:id="personcard" mnemonicParsing="false" text="Особиста картка" />
+              <MenuItem fx:id="usermasenger" mnemonicParsing="false" text="Месенджер" />
+               </items>
           </Menu>
         </menus>
       </MenuBar>

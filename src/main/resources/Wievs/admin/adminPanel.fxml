@@ -5,26 +5,19 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="borderPanel" maxHeight="-Infinity" stylesheets="/Style.css" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.admin.Adminpanel">
+<BorderPane fx:id="borderPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.admin.Adminpanel">
    <top>
       <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Файл">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#checkRaport" text="Переглянути рапорта" />
                </items></Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Вікна">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#clicPersonMeny" text="MenuPerson" />
-                  <MenuItem mnemonicParsing="false" onAction="#clicGeneratorMeny" text="Genrator" />
-                  <MenuItem mnemonicParsing="false" onAction="#cliclMesegMeny" text="Meseg" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" onAction="#clicPersonMeny" text="Особовий склад" />
+                  <MenuItem mnemonicParsing="false" onAction="#clicGeneratorMeny" text="Наряди" />
+                  <MenuItem mnemonicParsing="false" onAction="#cliclMesegMeny" text="Месенджер" />
             </items>
           </Menu>
         </menus>

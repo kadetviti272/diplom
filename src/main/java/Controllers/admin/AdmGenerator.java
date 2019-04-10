@@ -13,6 +13,10 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AdmGenerator {
 
     @FXML
@@ -29,15 +33,22 @@ public class AdmGenerator {
     TableColumn<People,String> columChange;
     @FXML
     TableView <People> tableChange;
+    @FXML
+    CheckBox algoritm;
 
     TableView.TableViewSelectionModel<Duty> selectionModel;
 
     @FXML
     private void initialize() throws ParseException, IOException {
-
         comboBox.setItems(FXCollections.observableArrayList(Mans.January, Mans.February, Mans.March, Mans.April, Mans.May, Mans.June, Mans.July, Mans.August, Mans.September, Mans.October, Mans.November, Mans.December ));
         comboBox.setOnAction(event ->  tablenaryd.setItems(FXCollections.observableArrayList(GeneratorDuty.getListDutiMans(comboBox.getValue()))));
-
+        algoritm.setOnAction(event ->{
+            if(selectionModel.getSelectedItem()!=null && algoritm.isSelected()){
+                tableChange.setItems(FXCollections.observableArrayList(helpTable(selectionModel.getSelectedItem())));
+            }else {
+                tableChange.setItems(FakeRepositori.fakePeople);
+            }
+        } );
         columname.setCellValueFactory(t-> t.getValue().getPeople().nameProperty().concat(" ").concat(t.getValue().getPeople().sonameProperty()));
         columzaveren.setCellValueFactory( t -> new SimpleBooleanProperty(t.getValue().isCertified()));
         columzaveren.setCellFactory(t->new TableCell<Duty,Boolean>(){
@@ -56,15 +67,27 @@ public class AdmGenerator {
             @Override
             public void changed(ObservableValue<? extends Duty> observable, Duty oldValue, Duty newValue) {
                 if(newValue==null){
-                    System.out.println("nuul");
                     tableChange.setItems(null);
                 }
                 else{
-                    tableChange.setItems(FakeRepositori.fakePeople);
-                    System.out.println("000");
+                    if(algoritm.isSelected())
+                    tableChange.setItems(FXCollections.observableArrayList(helpTable(newValue)));
+                    else{
+                        tableChange.setItems(FakeRepositori.fakePeople);
+                    }
                 }
             }
         });
+    }
+
+    private List<People> helpTable(Duty duty){
+        Date date = duty.getDate();
+        return FakeRepositori.fakePeople.stream()
+                .filter(p->p.birsDay(date))
+                .filter(p->p.dontVacatoin(date))
+                .filter(p->p.dontTooDay(date))
+                .sorted(GeneratorDuty::mysoort)
+                .collect(Collectors.toList());
     }
 
     public void generButton(ActionEvent actionEvent) throws ParseException {

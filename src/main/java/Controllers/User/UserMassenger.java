@@ -1,5 +1,4 @@
 package Controllers.User;
-
 import Models.FakeRepositori;
 import Models.Masage;
 import Models.People;
@@ -21,8 +20,8 @@ import java.util.Map;
 import static Models.FakeRepositori.clinDb;
 import static Models.FakeRepositori.wraitDb;
 
-public class UserMassenger {
 
+public class UserMassenger {
 
     @FXML
     VBox chatBox;
@@ -112,6 +111,5 @@ public class UserMassenger {
         hbox.getChildren().add(flow);
         hbox.getStyleClass().add("hbox");
         Platform.runLater(() -> chatBox.getChildren().addAll(hbox));
-
     }
 }

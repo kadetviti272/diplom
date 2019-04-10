@@ -42,6 +42,16 @@ public class GlvaPanel {
 
         combobox.setOnAction(event -> {
              table.setItems(FXCollections.observableArrayList(GeneratorDuty.getListDutiMans(combobox.getValue())));
+
+             if(table.getItems().size() > 0 && table.getItems().get(0).isCertified()){
+                 chekbox.setSelected(true);
+             }else if(table.getItems().size() > 0 && !table.getItems().get(0).isCertified()){
+                chekbox.setSelected(false);
+             }
+             if(table.getItems().size()==0){
+                 chekbox.setSelected(false);
+             }
+
         });
 
 

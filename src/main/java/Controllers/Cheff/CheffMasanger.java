@@ -99,6 +99,7 @@ public class CheffMasanger {
             FakeRepositori.chaffMasanger.setOutcoming(true); // meni tre chutatu ne
             cheffMasage(textfield.getText());
             textfield.setText("");
+
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -111,6 +112,7 @@ public class CheffMasanger {
                     }
                 }
             }).start();
+
         }
     }
 }

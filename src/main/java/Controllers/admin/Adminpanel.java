@@ -41,7 +41,7 @@ public class Adminpanel {
             System.out.println("rabotaet");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Wievs/admin/adminMasengger.fxml"));
             Parent root = fxmlLoader.load();
-            primaryStage.setScene(new Scene(root,700,400));
+            primaryStage.setScene(new Scene(root));
             primaryStage.show();
         }else {
             primaryStage.hide();

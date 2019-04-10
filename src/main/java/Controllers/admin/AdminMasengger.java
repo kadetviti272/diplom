@@ -1,8 +1,16 @@
 package Controllers.admin;
+import Models.Duty;
 import Models.FakeRepositori;
 import Models.Masage;
 import Models.People;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -43,17 +51,38 @@ public class AdminMasengger {
 
     private People mesegPeople;
     private boolean writeAdmin=false;
+    private final BooleanProperty nchan = new SimpleBooleanProperty(false);
 
     @FXML
     private void initialize(){
         table.setItems(FakeRepositori.fakePeople);
         columPerson.setCellValueFactory(t->t.getValue().rangProperty().concat(" ").concat(t.getValue().nameProperty().concat(" ").concat(t.getValue().sonameProperty())) );
-       chatBox.getStyleClass().add("chatBox");
-       //
-        //
-        // nach.setBorder(Border.EMPTY);
+        chatBox.getStyleClass().add("chatBox");
 
+        table.setRowFactory( tv ->{
+            TableRow<People> row =new TableRow<>();
+            BooleanBinding critical =  Bindings.createBooleanBinding(()->{
+                if(row.getItem()!=null &&  row.getItem().getMassenger().isIncoming() ){
+                    System.out.println();
+                    return true;
+                }
+                return false;
+            },row.itemProperty());
+            row.styleProperty().bind(Bindings.when(critical)
+            .then("-fx-background-color: green;")
+            .otherwise(""));
+            return row;
+        });
+
+
+
+//        if(!FakeRepositori.chaffMasanger.isIncoming()){  // ne rabotaet stil knopki admina
+//            nach.setStyle("-fx-background-color: green");
+//        }else{
+//            System.out.println("dal");
+//        }
     }
+
 
     @FXML
     public void changePeople(MouseEvent mouseEvent) {
@@ -63,6 +92,8 @@ public class AdminMasengger {
             mesegPeople = (People)table.getSelectionModel().getSelectedItem();
             label.setText(mesegPeople.getName()+" "+mesegPeople.getSoname());
             //table.setSelectionModel(null);
+            mesegPeople.getMassenger().setIncoming(false);
+            table.refresh();
             ArrayList<HBox> hBoxes = new ArrayList<>();
             for( Masage masage : mesegPeople.getMassenger().getMasageHistory() ){
                 if(!masage.isStatus()){

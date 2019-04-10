@@ -16,9 +16,13 @@ public class Vacation {
     }
 
     public Vacation(Date firstData, Date lastData) {
-        this.firstData = firstData;
-        this.lastData = lastData;
-
+        if(firstData.getTime()>lastData.getTime()){
+            this.lastData = firstData;
+            this.firstData = lastData;
+        }else{
+            this.firstData = firstData;
+            this.lastData = lastData;
+        }
     }
 
     public People getPeople() {
@@ -42,7 +46,14 @@ public class Vacation {
     }
 
     public void setFirstData(Date firstData) {
-        this.firstData = firstData;
+
+        if(lastData!=null && firstData.getTime()>lastData.getTime()){
+            this.firstData = this.lastData;
+            this.lastData=firstData;
+        }else {
+            this.firstData = firstData;
+        }
+
     }
 
     public Date getLastData() {
@@ -50,7 +61,12 @@ public class Vacation {
     }
 
     public void setLastData(Date lastData) {
-        this.lastData = lastData;
+        if(firstData!=null && firstData.getTime()> lastData.getTime()){
+            this.lastData = this.firstData;
+            this.firstData =lastData;
+        }else {
+            this.lastData = lastData;
+        }
     }
 
     @Override
