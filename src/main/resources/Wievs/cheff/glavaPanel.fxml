@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,12 +13,12 @@
    <children>
       <HBox layoutX="168.0" layoutY="-1.0" minWidth="-Infinity" prefHeight="66.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
          <children>
-            <ComboBox fx:id="combobox" prefWidth="150.0">
+            <JFXComboBox fx:id="combobox" prefWidth="156.0">
                <HBox.margin>
                   <Insets bottom="20.0" right="20.0" top="20.0" />
                </HBox.margin>
-            </ComboBox>
-            <CheckBox fx:id="chekbox" mnemonicParsing="false" onAction="#clikChek" prefHeight="32.0" prefWidth="125.0" text="Затвердити">
+            </JFXComboBox>
+            <JFXCheckBox fx:id="chekbox" checkedColor="#4059a9" onAction="#clikChek" text="Затвердити">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="13.0" />
                </HBox.margin>
@@ -26,12 +26,12 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <font>
-                  <Font size="14.0" />
+                  <Font size="15.0" />
                </font>
-            </CheckBox>
+            </JFXCheckBox>
          </children>
       </HBox>
-      <TableView fx:id="table" layoutX="203.0" layoutY="121.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="77.0">
+      <TableView fx:id="table" layoutX="203.0" layoutY="121.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../Styles/table.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="77.0">
         <columns>
           <TableColumn fx:id="col1" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Дата " />
           <TableColumn fx:id="col2" prefWidth="75.0" text="П.І.П" />

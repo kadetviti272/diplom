@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane depthTest="ENABLE" prefHeight="295.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.admin.AdminInfoList">
    <children>
@@ -18,7 +19,7 @@
         <items>
           <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="250.0" prefHeight="0.0" prefWidth="300.0">
                <children>
-                  <TableView fx:id="tablePerson" layoutX="-4.0" layoutY="14.0" maxWidth="-Infinity" onMousePressed="#presTable" prefHeight="200.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tablePerson" layoutX="-4.0" layoutY="14.0" maxWidth="-Infinity" onMousePressed="#presTable" prefHeight="200.0" prefWidth="300.0" stylesheets="@../../Styles/table.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="nameColum" prefWidth="101.0" text="Звання" />
                       <TableColumn fx:id="sonameColum" prefWidth="167.0" text="Прызвище Ім'я" />
@@ -59,23 +60,32 @@
                         <Label text="Дні (відпусток\відряджень)" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
-                  <HBox layoutX="14.0" layoutY="243.0" prefHeight="29.0" prefWidth="240.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                  <HBox layoutX="14.0" layoutY="243.0" prefHeight="29.0" prefWidth="281.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#clicaddButton" prefHeight="25.0" prefWidth="70.0" text="додати">
+                        <JFXButton buttonType="RAISED" onAction="#clicaddButton" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #005797;" text="Додати" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" onAction="#clicdellbutton" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #005797;" text="Видалити" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" onAction="#clicapdeit" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #005797;" text="Змінити" textFill="WHITE">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#clicdellbutton" prefHeight="25.0" prefWidth="70.0" text="видалити">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#clicapdeit" prefHeight="25.0" prefWidth="70.0" text="змінити">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Button>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
                      </children>
                   </HBox>
                   <Label fx:id="hollidayLabel" layoutX="10.0" layoutY="147.0" prefHeight="17.0" prefWidth="294.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="147.0" />

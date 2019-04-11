@@ -210,7 +210,7 @@ public class Authorization {
         fxmlLoader.setController(userMain);
         Parent root = fxmlLoader.load();
         primaryStage.setTitle(Integer.toString(people.getId()));
-        primaryStage.setScene(new Scene(root,500,300));
+        primaryStage.setScene(new Scene(root,800,500));
         primaryStage.show();
     }
 

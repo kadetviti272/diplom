@@ -1,6 +1,9 @@
 package Controllers.admin;
 
 import Models.*;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTreeTableColumn;
+import com.jfoenix.controls.JFXTreeView;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -20,7 +23,13 @@ import java.util.stream.Collectors;
 public class AdmGenerator {
 
     @FXML
-    ComboBox<Mans> comboBox;
+    JFXComboBox<Mans> comboBox;
+    @FXML
+    JFXTreeView<People> t2;
+    @FXML
+    JFXTreeTableColumn<People,String> c2;
+//    @FXML
+//    ComboBox<Mans> comboBox;
     @FXML
     TableView<Duty> tablenaryd;
     @FXML
@@ -60,6 +69,8 @@ public class AdmGenerator {
         });
 
         columdate.setCellValueFactory( t -> new SimpleStringProperty( GeneratorDuty.dateFormat.format(t.getValue().getData())));
+
+        //c2.setCellValueFactory(t-> t.getValue().nameProperty().concat(" ").concat(t.);
 
         columChange.setCellValueFactory(t-> t.getValue().nameProperty().concat(" ").concat(t.getValue().sonameProperty()));
         selectionModel = tablenaryd.getSelectionModel();

@@ -3,6 +3,7 @@ import Models.Duty;
 import Models.FakeRepositori;
 import Models.Masage;
 import Models.People;
+import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -40,18 +41,15 @@ public class AdminMasengger {
     @FXML
     Label label;
     @FXML
-    Button sendButton;
-    @FXML
     VBox chatBox;
     @FXML
     TextField lineText;
     @FXML
-    Button nach;
+    JFXButton nacha;
 
 
     private People mesegPeople;
     private boolean writeAdmin=false;
-    private final BooleanProperty nchan = new SimpleBooleanProperty(false);
 
     @FXML
     private void initialize(){
@@ -74,7 +72,9 @@ public class AdminMasengger {
             return row;
         });
 
-
+        nacha.getStyleClass().add("dontRead");
+        System.out.println(nacha.getStyleClass());
+      
 
 //        if(!FakeRepositori.chaffMasanger.isIncoming()){  // ne rabotaet stil knopki admina
 //            nach.setStyle("-fx-background-color: green");
@@ -185,5 +185,8 @@ public class AdminMasengger {
     public void nachal(ActionEvent actionEvent) {
         writeAdmin = true;
         label.setText("Начальник");
+//        nacha.getStyleClass().add("dontRead");
+        System.out.println(nacha.getStyle());
+//        nacha.setStyle("-fx-background-color: green;");
     }
 }

@@ -1,1 +1,1 @@
-{"incoming":false,"outcoming":true,"masageHistory":[{"text":"skolov","status":false},{"text":"s;akfhSDLKFHdlsf","status":false},{"text":"sldkgal\u0027kshglasdhglke;kt;sknv","status":false},{"text":"sldbladsghlasdhgsdglskfghklasdkhlg","status":false},{"text":"kjsdjbgas;dhgslkdgklh","status":false}]}
+{"incoming":false,"outcoming":true,"masageHistory":[{"text":"sdfsdfsdf","status":false},{"text":"sdfaslkjbh\u0027AKLHG\u0027SKHDG\u0027LASHKGSALHGK","status":false}]}

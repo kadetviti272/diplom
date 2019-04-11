@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
@@ -9,8 +9,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" stylesheets="/Styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.admin.AdminMasengger">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" stylesheets="@../../Styles/styleMasenger.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.admin.AdminMasengger">
     <children>
       <SplitPane dividerPositions="0.2636103151862464" layoutX="100.0" layoutY="120.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -20,7 +21,7 @@
                      <children>
                         <AnchorPane prefHeight="342.0" prefWidth="204.0" VBox.vgrow="SOMETIMES">
                            <children>
-                              <TableView fx:id="table" layoutX="-297.0" layoutY="-59.0" maxHeight="-Infinity" onMousePressed="#changePeople" prefHeight="337.0" prefWidth="168.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="table" layoutX="-297.0" layoutY="-59.0" maxHeight="-Infinity" onMousePressed="#changePeople" prefHeight="337.0" prefWidth="168.0" stylesheets="@../../Styles/table.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
                                   <TableColumn fx:id="columPerson" prefWidth="75.0" text="Користувачі" />
                                 </columns>
@@ -32,7 +33,11 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="38.0" prefWidth="181.0" VBox.vgrow="NEVER">
                            <children>
-                              <Button layoutX="33.0" mnemonicParsing="false" onAction="#nachal" defaultButton="true" prefHeight="60.0" prefWidth="181.0" text="Начальнику" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <JFXButton fx:id="nacha" layoutY="2.0" onAction="#nachal" prefHeight="39.0" prefWidth="181.0" style="-fx-background-color: #4059a9;" text="Начальнику" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </JFXButton>
                            </children>
                         </AnchorPane>
                      </children>
@@ -43,12 +48,16 @@
                <children>
                   <Label fx:id="label" layoutX="24.0" layoutY="6.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="6.0" />
                   <TextField fx:id="lineText" layoutX="20.0" layoutY="367.0" prefHeight="25.0" prefWidth="375.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="116.0" />
-                  <Button fx:id="sendButton"  layoutX="332.0" layoutY="367.0" maxWidth="100.0" mnemonicParsing="false" onAction="#sendMasage" prefHeight="25.0" prefWidth="85.0" text="відправити" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="19.0" />
                   <ScrollPane layoutX="20.0" layoutY="23.0" prefHeight="335.0" prefWidth="377.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="23.0">
                      <content>
                         <VBox fx:id="chatBox" prefHeight="650.0" prefWidth="455.0" style="-fx-background-insets: 4, 0, 0;" />
                      </content>
                   </ScrollPane>
+                  <JFXButton defaultButton="true" layoutX="451.0" layoutY="367.0" onAction="#sendMasage" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #4059a9;" text="відправити" textFill="WHITE" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="20.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
                </children>
           </AnchorPane>
         </items>

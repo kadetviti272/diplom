@@ -1,0 +1,94 @@
+.message{
+    -fx-font-size: 14px;
+    -fx-font-weight: 300;
+}
+
+.txtName{
+    -fx-fill: black;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.tempFlow{
+    -fx-padding: 5 15 5 10;
+}
+
+.vbox{
+    -fx-background-color: #ffffff
+}
+
+
+.textFlow{
+    -fx-background-color: rgb(6,130,252);
+    -fx-background-insets: -5 -10 -5 -5;
+    -fx-shape: "M 94.658379,129.18587 H 46.277427 c -3.545458,0.23354 -5.32763,-1.59167 -5.14193,-4.67449
+    v -19.39913 c 0.405797,-3.73565 2.470637,-4.56641 5.14193,-4.90821 h 43.706464 c 2.572701,0.2361 4.604321,
+    1.68288 4.674488,4.90821 v 19.39913 c 0.436089,3.14572 2.890695,3.57304 4.908212,4.67449 z";
+}
+
+.textFlowFlipped{
+    -fx-background-color: rgb(235,235,235);
+    -fx-background-insets: -5 -5 -5 -10;
+    -fx-shape: "m 46.030545,129.18592 h 48.380952 c 3.54546,0.23355 5.32763,-1.59167 5.14193,-4.67449
+    V 105.1123 c -0.4058,-3.73565 -2.47064,-4.56641 -5.14193,-4.90821 H 50.705033
+    c -2.572701,0.2361 -4.604321,1.68288 -4.674488,4.90821 v 19.39913
+    c -0.436089,3.14572 -2.890695,3.57304 -4.908212,4.67449 z";
+}
+
+.textFlowLog{
+    -fx-background-color: rgba(0,0,0,.1);
+    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.08),2,1.0,-0.5,-0.5);
+    -fx-background-insets: -5 -10 -5 -5;
+    -fx-shape: "M 100, 0 h300 a30,30 0 0 1 30,30 v60 a30,30 0 0 1 -30,30 h-300 a30,30 0 0 1 -30,-30 v-60 a30,30 0 0 1 30,-30 z";
+
+}
+
+.hbox{
+    -fx-background-insets: 15;
+    -fx-padding: 12px;
+}
+
+.tempFlowFlipped{
+    -fx-padding: 5 5 5 15;
+}
+
+.textFlowFlipped{
+    -fx-background-color: rgb(235,235,235);
+    -fx-background-insets: -5 -5 -5 -10;
+    -fx-shape: "m 46.030545,129.18592 h 48.380952 c 3.54546,0.23355 5.32763,-1.59167 5.14193,-4.67449
+    V 105.1123 c -0.4058,-3.73565 -2.47064,-4.56641 -5.14193,-4.90821 H 50.705033
+    c -2.572701,0.2361 -4.604321,1.68288 -4.674488,4.90821 v 19.39913
+    c -0.436089,3.14572 -2.890695,3.57304 -4.908212,4.67449 z";
+}
+
+.dontRead{
+    -fx-background-color: green;
+}
+
+.read{
+    -fx-background-color: #4059a9;
+}
+
+
+.scroll-pane > .virtual-flow > .scroll-bar:vertical,
+.scroll-pane > .virtual-flow > .scroll-bar:vertical > .track,
+.scroll-pane > .virtual-flow > .scroll-bar:vertical > .track-background,
+.scroll-pane > .virtual-flow > .scroll-bar:horizontal,
+.scroll-pane > .virtual-flow > .scroll-bar:horizontal > .track,
+.scroll-pane > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .virtual-flow > .scroll-bar > .increment-button,
+.scroll-pane > .virtual-flow > .scroll-bar > .decrement-button {
+    -fx-opacity: 0;
+}
+
+.scroll-pane {
+    -fx-background-color:#ffffff;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb{
+    -fx-background-color:#e0e0e0;
+    -fx-border-color:#262626;
+}
