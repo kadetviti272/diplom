@@ -52,25 +52,11 @@ public class UserMassenger {
     public void sendMasage(ActionEvent actionEvent) {
         if(!lineText.getText().trim().equals("")){
             wisiblMaymasage(lineText.getText());
-            FakeRepositori.autorizadPeopl.getMassenger().getMasageHistory().add(new Masage( lineText.getText() , true));
+            FakeRepositori.autorizadPeopl.getMassenger().getMasageHistory().add(new Masage(lineText.getText() , true));
             lineText.setText("");
-            autorizPeople.getMassenger().setIncoming(true);
+            autorizPeople.getMassenger().setIncoming(true); //adminu nadaprochitat
         }
         System.out.println("++"+lineText.getText());
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    while (FakeRepositori.fclin);
-//                    FakeRepositori.fclin = true;
-//                    clinDb();
-//                    wraitDb();
-//                    FakeRepositori.fclin = false;
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
     }
 
     private void wisiblMaymasage(String masage){

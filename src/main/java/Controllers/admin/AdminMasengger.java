@@ -51,9 +51,17 @@ public class AdminMasengger {
     private People mesegPeople;
     private boolean writeAdmin=false;
 
+    // chaf masage status false
+    // user masage status true
+    private int sortForTable(People p1,People p2){
+        if(p1.getMassenger().isIncoming())
+            return -1;
+        else return 1;
+    }
+
     @FXML
     private void initialize(){
-        table.setItems(FakeRepositori.fakePeople);
+        table.setItems(FakeRepositori.fakePeople.sorted(this::sortForTable));
         columPerson.setCellValueFactory(t->t.getValue().rangProperty().concat(" ").concat(t.getValue().nameProperty().concat(" ").concat(t.getValue().sonameProperty())) );
         chatBox.getStyleClass().add("chatBox");
 
@@ -61,7 +69,6 @@ public class AdminMasengger {
             TableRow<People> row =new TableRow<>();
             BooleanBinding critical =  Bindings.createBooleanBinding(()->{
                 if(row.getItem()!=null &&  row.getItem().getMassenger().isIncoming() ){
-                    System.out.println();
                     return true;
                 }
                 return false;
@@ -74,7 +81,11 @@ public class AdminMasengger {
 
         nacha.getStyleClass().add("dontRead");
         System.out.println(nacha.getStyleClass());
-      
+
+        FakeRepositori.chaffMasanger.setIncoming(true);
+        if(FakeRepositori.chaffMasanger.isIncoming())
+            nacha.setStyle("-fx-background-color: green;");
+        else nacha.setStyle("-fx-background-color: #4059a9;");
 
 //        if(!FakeRepositori.chaffMasanger.isIncoming()){  // ne rabotaet stil knopki admina
 //            nach.setStyle("-fx-background-color: green");
@@ -94,7 +105,6 @@ public class AdminMasengger {
             //table.setSelectionModel(null);
             mesegPeople.getMassenger().setIncoming(false);
             table.refresh();
-            ArrayList<HBox> hBoxes = new ArrayList<>();
             for( Masage masage : mesegPeople.getMassenger().getMasageHistory() ){
                 if(!masage.isStatus()){
                     wisiblAdminmasage(masage.getText());
@@ -132,31 +142,19 @@ public class AdminMasengger {
     @FXML
     public void sendMasage(ActionEvent actionEvent) {
         if(!lineText.getText().trim().equals("")){
-
+            wisiblAdminmasage(lineText.getText());
             if(mesegPeople!=null && !writeAdmin){
-                wisiblAdminmasage(lineText.getText());
                 mesegPeople.getMassenger().getMasageHistory().add(new Masage(lineText.getText(),false));
                 mesegPeople.getMassenger().setOutcoming(true); //useru tre chitatu daa
+                mesegPeople.getMassenger().setIncoming(false);
             }
             if(writeAdmin){
-                wisiblAdminmasage(lineText.getText());
+                FakeRepositori.chaffMasanger.getMasageHistory().add(new Masage(lineText.getText(),false)); // otprav admin
+                FakeRepositori.chaffMasanger.setOutcoming(true); //chef nadda chetat
+                FakeRepositori.chaffMasanger.setIncoming(false); //adminu chetat uge ne nada;
             }
         }
         lineText.setText("");
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    while (FakeRepositori.fclin);
-//                    FakeRepositori.fclin = true;
-//                    clinDb();
-//                    wraitDb();
-//                    FakeRepositori.fclin = false;
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
     }
 
     private void wisibleUserMasage(String masage){
@@ -185,8 +183,16 @@ public class AdminMasengger {
     public void nachal(ActionEvent actionEvent) {
         writeAdmin = true;
         label.setText("Начальник");
+        nacha.setStyle("-fx-background-color: #4059a9;");
 //        nacha.getStyleClass().add("dontRead");
+        for( Masage masage : FakeRepositori.chaffMasanger.getMasageHistory() ){
+            if(!masage.isStatus()){
+                wisiblAdminmasage(masage.getText());
+            }else if (masage.isStatus()){
+                wisibleUserMasage(masage.getText());
+            }
+        }
+        FakeRepositori.chaffMasanger.setIncoming(false);
         System.out.println(nacha.getStyle());
-//        nacha.setStyle("-fx-background-color: green;");
     }
 }

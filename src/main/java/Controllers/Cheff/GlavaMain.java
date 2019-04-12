@@ -55,19 +55,17 @@ public class GlavaMain {
 
     }
 
-    Stage primaryStage;
+
     public void Masanger(ActionEvent actionEvent) throws IOException {
-        if (primaryStage == null) {
-            primaryStage = new Stage();
+        {
+            Stage primaryStage = new Stage();
             primaryStage.setResizable(false);
             System.out.println("rabotaet");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Wievs/cheff/cheffMasanger.fxml"));
             Parent root = fxmlLoader.load();
             primaryStage.setScene(new Scene(root, 700, 400));
             primaryStage.show();
-        } else {
-            primaryStage.hide();
-            primaryStage.show();
         }
+
     }
 }

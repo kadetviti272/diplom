@@ -12,7 +12,7 @@
    <children>
       <ScrollPane prefHeight="348.0" prefWidth="529.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <VBox fx:id="chatBox" prefHeight="425.0" prefWidth="601.0" />
+            <VBox fx:id="chatBox" prefHeight="21.0" prefWidth="601.0" />
          </content>
       </ScrollPane>
       <TextField fx:id="lineText" layoutY="361.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="108.0" />

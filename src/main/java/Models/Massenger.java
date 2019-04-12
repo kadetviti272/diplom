@@ -2,6 +2,7 @@ package Models;
 import java.util.*;
 
 public class Massenger {
+
     private boolean incoming;
     private boolean outcoming;
 

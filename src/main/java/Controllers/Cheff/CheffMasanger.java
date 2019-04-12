@@ -26,13 +26,6 @@ public class CheffMasanger {
     @FXML
     TextField textfield;
 
-    public Stage getStage() {
-        return stage;
-    }
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     @FXML
     private void initialize(){
         if(FakeRepositori.chaffMasanger!=null){
@@ -46,7 +39,7 @@ public class CheffMasanger {
         }
     }
 
-    private void admMasag(String masage){
+    private void cheffMasage (String masage){
         Text text=new Text(masage);
         text.setFill(Color.WHITE);
         text.getStyleClass().add("message");
@@ -67,7 +60,7 @@ public class CheffMasanger {
         Platform.runLater(() -> chatBox.getChildren().addAll(hbox));
     }
 
-    private void cheffMasage (String masage){
+    private void  admMasag (String masage){
         Text text=new Text(masage);
         text.setFill(Color.WHITE);
         text.getStyleClass().add("message");
@@ -89,30 +82,13 @@ public class CheffMasanger {
         Platform.runLater(() -> chatBox.getChildren().addAll(hbox));
     }
 
-
-    String gsonstr;
     public void send(ActionEvent actionEvent) throws IOException {
         if (!textfield.getText().trim().equals("")){
-            admMasag(textfield.getText());
-            FakeRepositori.chaffMasanger.getMasageHistory().add(new Masage(textfield.getText(),false));
-            FakeRepositori.chaffMasanger.setIncoming(false); // admu tre chutatu da
-            FakeRepositori.chaffMasanger.setOutcoming(true); // meni tre chutatu ne
+            FakeRepositori.chaffMasanger.getMasageHistory().add(new Masage(textfield.getText(),true));
+            FakeRepositori.chaffMasanger.setIncoming(true); // admu tre chutatu da
+            FakeRepositori.chaffMasanger.setOutcoming(false); // meni tre chutatu ne
             cheffMasage(textfield.getText());
             textfield.setText("");
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        gsonstr=new Gson().toJson(FakeRepositori.chaffMasanger);
-                        System.out.println("dadadadadadad");
-                        new FileOutputStream("C:\\Users\\home-pc\\IdeaProject\\diplom\\src\\main\\resources\\cheffadmin\\masanger.txt").write(gsonstr.getBytes());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-
         }
     }
 }
