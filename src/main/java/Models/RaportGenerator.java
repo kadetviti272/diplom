@@ -21,19 +21,14 @@ public class RaportGenerator {
         docx.fillTemplate(variables);
         String a =  "Рапорта/Заміни/"+oldPeopl.getRang()+" "+oldPeopl.getSoname()+"-"+newPeopl.getRang()+" "+newPeopl.getSoname()+new SimpleDateFormat("dd-MM-yyyy").format(duty.getDate().getTime())+".docx";
         docx.save(a);
-
     }
 
     public static void raportMans( Mans mans){
-
         System.out.println("da y rabota");
         ArrayList listDuty = GeneratorDuty.getListDutiMans(mans);
         Docx docx = new Docx("src/main/resources/shablon/s1.docx");
         docx.setVariablePattern(new VariablePattern("#{", "}"));
-// preparing variables
         Variables variables = new Variables();
-//
-//        variables.addTextVariable(new TextVariable("#{lastname}", "Stypka"));
         String text="";
         for (int i = 0; i <32; i++) {
             try {
@@ -45,7 +40,6 @@ public class RaportGenerator {
         docx.fillTemplate(variables);
         String a =  "Рапорта/Графік чергування/"+  mans.toString() + new SimpleDateFormat(" dd-MM-yyyy (HH-mm-ss)").format(Calendar.getInstance().getTime())+".docx";
         docx.save(a);
-        System.out.println("sohranil");
     }
 
 
