@@ -38,7 +38,8 @@ public class RaportGenerator {
             }
         }
         docx.fillTemplate(variables);
-        String a =  "Рапорта/Графік чергування/"+  mans.toString() + new SimpleDateFormat(" dd-MM-yyyy (HH-mm-ss)").format(Calendar.getInstance().getTime())+".docx";
+        String a =  "Рапорта/Графік чергування/"+  mans.toString() +
+                new SimpleDateFormat(" dd-MM-yyyy (HH-mm-ss)").format(Calendar.getInstance().getTime())+".docx";
         docx.save(a);
     }
 
