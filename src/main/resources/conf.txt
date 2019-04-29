@@ -1,0 +1,1 @@
+{"incoming":false,"outcoming":false,"masageHistory":[{"text":"testa","status":false},{"text":"testcheff","status":true},{"text":"Просто выныш тест","status":true}]}

@@ -3,6 +3,7 @@ package Controllers.Cheff;
 import Models.Duty;
 import Models.GeneratorDuty;
 import Models.Mans;
+import Models.RaportGenerator;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -45,6 +46,7 @@ public class GlvaPanel {
 
              if(table.getItems().size() > 0 && table.getItems().get(0).isCertified()){
                  chekbox.setSelected(true);
+
              }else if(table.getItems().size() > 0 && !table.getItems().get(0).isCertified()){
                 chekbox.setSelected(false);
              }
@@ -71,6 +73,7 @@ public class GlvaPanel {
     public void clikChek(ActionEvent actionEvent) {
         if(chekbox.isSelected()){
             GeneratorDuty.getListDutiMans(combobox.getValue()).stream().forEach(duty -> duty.setCertified(true));
+            RaportGenerator.raportMans(combobox.getValue());
         }else{
             GeneratorDuty.getListDutiMans(combobox.getValue()).stream().forEach(duty -> duty.setCertified(false));
         }

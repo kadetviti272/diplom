@@ -1,6 +1,9 @@
 package Controllers.User;
 
+import Models.FakeRepositori;
 import Models.People;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -75,16 +78,21 @@ public class UserMain {
 
         personcard.setOnAction( event -> {
             try {
-              borderPanel.setCenter(FXMLLoader.load(getClass().getResource("/Wievs/user/userInfo.fxml")));
+                borderPanel.setCenter(FXMLLoader.load(getClass().getResource("/Wievs/admin/adminInfoListPerson.fxml")));
+                //  borderPanel.setCenter(FXMLLoader.load(getClass().getResource("/Wievs/user/userInfo.fxml")));
             } catch ( IOException e){
                 e.printStackTrace();
             }
         });
 
         exit.setOnAction( event -> {
-//            Stage stage = (Stage) exit.getScene().getWindow();
-//            // do what you have to do
-//            stage.close();
+            try {
+                FakeRepositori.clinDb();
+                FakeRepositori.wraitDb();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Platform.exit();
         });
 
         file.setOnAction(event -> {

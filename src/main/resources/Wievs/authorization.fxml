@@ -16,7 +16,7 @@
       </Label>
       <JFXTextField fx:id="login" focusColor="#2451da" layoutX="81.0" layoutY="91.0" prefHeight="46.0" prefWidth="206.0" promptText="Login" />
       <JFXPasswordField fx:id="pssword" focusColor="#2451da" layoutX="81.0" layoutY="157.0" prefHeight="46.0" prefWidth="206.0" promptText="Password" />
-      <JFXButton buttonType="RAISED" layoutX="207.0" layoutY="238.0" onAction="#pressbutton" prefHeight="35.0" prefWidth="90.0" text="Увійти" textAlignment="CENTER" textFill="#0e11c3">
+      <JFXButton buttonType="RAISED" defaultButton="truea" layoutX="207.0" layoutY="238.0" onAction="#pressbutton" prefHeight="35.0" prefWidth="90.0" text="Увійти" textAlignment="CENTER" textFill="#0e11c3">
          <font>
             <Font name="Elephant" size="18.0" />
          </font>

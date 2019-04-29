@@ -106,11 +106,12 @@ public class AdmGenerator {
     }
 
     public void changeDuty(ActionEvent actionEvent) {
-
         System.out.println(tablenaryd.getSelectionModel().getSelectedItem().getPeople().getName());
         System.out.println(tableChange.getSelectionModel().getSelectedItem().getName());
+        tablenaryd.getSelectionModel().getSelectedItem().getPeople().getListDuti().remove(tablenaryd.getSelectionModel().getSelectedItem()); // udalaym narad u persona
         tablenaryd.getSelectionModel().getSelectedItem().setPeople(tableChange.getSelectionModel().getSelectedItem());
         tablenaryd.refresh();
+        tableChange.refresh();
     }
 
 }

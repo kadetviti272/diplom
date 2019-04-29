@@ -9,11 +9,13 @@ import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import java.io.File;
-import java.io.IOException;
+
+import java.io.*;
 import java.lang.reflect.Type;
+import java.security.acl.Group;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FakeRepositori {
 
@@ -23,7 +25,10 @@ public class FakeRepositori {
     public static ObservableList<People> fakePeople = FXCollections.observableArrayList();
     public static Object[] arrControler=new Object[2];
     public static int idPersonAutoriz;
-    public static Type itemsMapType = new TypeToken<List<Masage>>() {}.getType();
+
+    private static Type  itemsMapType = new TypeToken<List<Masage>>(){}.getType();
+    private static Type itemsMasanger = new TypeToken<Massenger>(){}.getType();
+
     public static People autorizadPeopl;
     public static boolean fclin = false;
     public static Massenger chaffMasanger = new Massenger();
@@ -51,6 +56,7 @@ public class FakeRepositori {
                 Massenger tempMasanger = new Massenger();
                 for (Column column : table.getColumns()) {
                     String columnName = column.getName();
+                    System.out.println("(((((( "+columnName);
                     switch (columnName) {
                         case "id":
                             tempPeople.setId((Integer) row.get(columnName));
@@ -76,13 +82,13 @@ public class FakeRepositori {
                         case "text":
                             System.out.println((String)row.get(columnName));
                             tempMasanger.setMasageHistory(new Gson().fromJson((String)row.get(columnName),itemsMapType));
-                          //  System.out.println(tempMasanger.getText());
+                            //System.out.println(tempMasanger.getText());
                             break;
                         case  "inmasage":
-                            tempMasanger.setIncoming(((Boolean) row.get(columnName)).booleanValue());
+                            tempMasanger.setIncoming((Boolean) row.get(columnName));
                             break;
                         case  "outmasage":
-                            tempMasanger.setOutcoming(((Boolean) row.get(columnName)).booleanValue());
+                            tempMasanger.setOutcoming((Boolean) row.get(columnName));
                             break;
                         case  "call":
                             tempPeople.setCall((String) row.get(columnName));
@@ -102,6 +108,11 @@ public class FakeRepositori {
                 tempPeople.setMassenger(tempMasanger);
                 fakePeople.add(tempPeople);
             }
+
+            //metod deser masage admina
+            FakeRepositori.chaffMasanger = new Gson().fromJson((new BufferedReader(new FileReader("src/main/resources/conf.txt")).readLine()),itemsMasanger);
+            // metod sereliz admin
+
 
             // metod 2;
             table = db.getTable("duty");
@@ -175,7 +186,7 @@ public class FakeRepositori {
 
     public static void clinDb() throws IOException {
         try (Database db = DatabaseBuilder.open(new File("db.mdb"))){
-            String[] arr = new String[]{"user","duty","vacation"};
+            String[] arr = new String[]{"user","duty","vacation","conf"};
             for (int i = 0; i <arr.length ; i++) {
                 Table table = db.getTable(arr[i]);
                 for ( Row row : table) {
@@ -190,14 +201,16 @@ public class FakeRepositori {
     }
 
     public static void wraitDb() throws IOException {
+        new FileOutputStream("src/main/resources/conf.txt").write(new Gson().toJson(FakeRepositori.chaffMasanger).getBytes());
         try  (Database db = DatabaseBuilder.open(new File("db.mdb"))) {
             Table table = db.getTable("user");
             People people;
             String str;
+
             for (int j = 0; j <fakePeople.size() ; j++) {
                 people = fakePeople.get(j);
                 str = new Gson().toJson(people.getMassenger().getMasageHistory());
-                table.addRow(people.getPassword(), people.getLogin(), people.getName(), people.getSoname(), people.getFname(), people.getRang(), people.getId(), people.getMassenger().isOutcoming(), people.getMassenger().isOutcoming(), str);
+                table.addRow(people.getPassword(), people.getLogin(), people.getName(), people.getSoname(), people.getFname(), people.getRang(), people.getId(), people.getMassenger().isIncoming(), people.getMassenger().isOutcoming(), str,people.getCall(),people.getdBirsday(),"no",people.getPosition());
             }
 
             table = db.getTable("duty");
@@ -208,11 +221,19 @@ public class FakeRepositori {
             }
 
             table = db.getTable("vacation");
+            ArrayList<Vacation> listv = getListVacation();
             Vacation vacation;
-            for (int i = 0; i <fakeVacation.size() ; i++) {
-                vacation = fakeVacation.get(i);
+            for (int i = 0; i <listv.size() ; i++) {
+                vacation = listv.get(i);
+                System.out.println(listv.size());
+                System.out.println(vacation);
                 table.addRow(vacation.getFirstData(), vacation.getId(), vacation.getLastData());
             }
+
+            table = db.getTable("conf");
+            table.addRow(new Gson().toJson(FakeRepositori.chaffMasanger),1);
+
+
 
         }catch (Exception e){
             e.printStackTrace();
@@ -227,5 +248,15 @@ public class FakeRepositori {
                table.deleteRow(cursor.getCurrentRow());
             }
         }
+    }
+
+    private static ArrayList<Vacation> getListVacation(){
+        ArrayList<Vacation>temp =new ArrayList<>();
+        for (int i = 0; i <FakeRepositori.fakePeople.size(); i++) {
+            for (int j = 0; j <FakeRepositori.fakePeople.get(i).getListVakation().size() ; j++) {
+                temp.add(FakeRepositori.fakePeople.get(i).getListVakation().get(j));
+            }
+        }
+        return temp;
     }
 }

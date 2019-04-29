@@ -1,6 +1,7 @@
 package Controllers;
 import Controllers.User.UserMain;
 import Models.Duty;
+import Models.FakeRepositori;
 import Models.People;
 import Models.Vacation;
 import com.healthmarketscience.jackcess.*;
@@ -111,7 +112,6 @@ public class Authorization {
             @Override
             public void onChanged(Change<? extends People> c) {
                 System.out.println("izmenenie v cheloveakh");
-
             }
         });
     }
@@ -150,6 +150,12 @@ public class Authorization {
     private void showWindow(String URL) throws IOException {
         final Stage primaryStage = new Stage();
         primaryStage.setOnCloseRequest(event -> {
+            try {
+                FakeRepositori.clinDb();
+                FakeRepositori.wraitDb();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             System.out.println("da zakrl");
 
             Platform.exit();
@@ -164,6 +170,12 @@ public class Authorization {
     private void showWindow (String URL,People people) throws IOException {
         Stage primaryStage = new Stage();
         primaryStage.setOnCloseRequest(event -> { // nada bude porabotat
+            try {
+                FakeRepositori.clinDb();
+                FakeRepositori.wraitDb();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             System.out.println("da zakrl");
 
             Platform.exit();

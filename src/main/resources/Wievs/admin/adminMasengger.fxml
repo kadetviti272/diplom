@@ -46,7 +46,10 @@
           </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="317.0">
                <children>
-                  <Label fx:id="label" layoutX="24.0" layoutY="6.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="6.0" />
+                  <Label fx:id="label" layoutX="24.0" layoutY="6.0" textFill="#5360b5" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="6.0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Label>
                   <TextField fx:id="lineText" layoutX="20.0" layoutY="367.0" prefHeight="25.0" prefWidth="375.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="116.0" />
                   <ScrollPane layoutX="20.0" layoutY="23.0" prefHeight="335.0" prefWidth="377.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="23.0">
                      <content>

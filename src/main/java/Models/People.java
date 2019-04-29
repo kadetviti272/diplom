@@ -108,7 +108,7 @@ public class People {
         this.massenger = new Massenger();
         this.call = "";
         this.image ="";
-        this.dBirsday = new Date();
+
     }
 
     public boolean getDeyBirsday(){

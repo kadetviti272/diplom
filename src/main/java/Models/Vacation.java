@@ -3,6 +3,7 @@ package Models;
 import Models.People;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Vacation {
 
@@ -23,6 +24,34 @@ public class Vacation {
             this.firstData = firstData;
             this.lastData = lastData;
         }
+    }
+
+    public Vacation(Date firstData, Date lastData,People people) {
+        if(firstData.getTime() > lastData.getTime()){
+            this.lastData = firstData;
+            this.firstData = lastData;
+            this.id = people.getId();
+            this.people = people;
+        }else{
+            this.firstData = firstData;
+            this.lastData = lastData;
+            this.id = people.getId();
+            this.people = people;
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vacation vacation = (Vacation) o;
+        return Objects.equals(firstData, vacation.firstData) &&
+                Objects.equals(lastData, vacation.lastData);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstData, lastData);
     }
 
     public People getPeople() {

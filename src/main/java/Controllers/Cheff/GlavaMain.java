@@ -1,6 +1,8 @@
 package Controllers.Cheff;
 
+import Models.FakeRepositori;
 import Models.Mans;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +54,13 @@ public class GlavaMain {
 
 
     public void exit(ActionEvent actionEvent) {
-
+        try {
+            FakeRepositori.clinDb();
+            FakeRepositori.wraitDb();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Platform.exit();
     }
 
 

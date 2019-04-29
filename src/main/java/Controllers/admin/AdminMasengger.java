@@ -82,7 +82,6 @@ public class AdminMasengger {
         nacha.getStyleClass().add("dontRead");
         System.out.println(nacha.getStyleClass());
 
-        FakeRepositori.chaffMasanger.setIncoming(true);
         if(FakeRepositori.chaffMasanger.isIncoming())
             nacha.setStyle("-fx-background-color: green;");
         else nacha.setStyle("-fx-background-color: #4059a9;");
@@ -162,7 +161,12 @@ public class AdminMasengger {
         text.setFill(Color.WHITE);
         text.getStyleClass().add("message");
         TextFlow tempFlow=new TextFlow();
-        Text txtName=new Text(mesegPeople.getName().concat(" ").concat(mesegPeople.getSoname()) + ":\n");
+        Text txtName;
+        try {
+            txtName=new Text(mesegPeople.getName().concat(" ").concat(mesegPeople.getSoname()) + ":\n");
+        }catch (Exception e){
+            txtName=new Text("Начальник" + ":\n");
+        }
         txtName.getStyleClass().add("txtName");
         tempFlow.getChildren().add(txtName);
         tempFlow.getChildren().add(text);

@@ -12,7 +12,9 @@
           <Menu mnemonicParsing="false" text="Файл">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#checkRaport" text="Переглянути рапорта" />
-               </items></Menu>
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Вийти" />
+               </items>
+          </Menu>
           <Menu mnemonicParsing="false" text="Вікна">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#clicPersonMeny" text="Особовий склад" />

@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -25,10 +26,8 @@ public class AdminInfoList {
 
     @FXML
     TableView<People> tablePerson;
-
     @FXML
     TableColumn<People,String> nameColum;
-
     @FXML
     TableColumn<People,String> sonameColum;
     @FXML
@@ -43,14 +42,20 @@ public class AdminInfoList {
     Label vzvanLabel;
     @FXML
     Label hollidayLabel;
-
-
+    @FXML
+    HBox test;
+    @FXML
+    Label lCall;
 
     private People sendPeople;
 
     private RedactPerson redactPerson = new RedactPerson();
+
     @FXML
     private void initialize() throws IOException {
+        if(FakeRepositori.autorizadPeopl != null){
+            test.setVisible(false);
+        }
         tablePerson.setItems(FakeRepositori.fakePeople);
         nameColum.setCellValueFactory(person -> person.getValue().rangProperty());
         sonameColum.setCellValueFactory(person -> person.getValue().sonameProperty().concat(" ").concat(person.getValue().nameProperty()));
@@ -59,11 +64,17 @@ public class AdminInfoList {
     private void initLabel(){
         nameLabel.setText(sendPeople.getName());
         sonameLabel.setText(sendPeople.getSoname());
-        birsdayLabel.setText("NET POLLY NADA POPRAVIT");
+        birsdayLabel.setText(GeneratorDuty.dateFormat.format(sendPeople.getdBirsday()));
         posadaLabel.setText("nada dodelat");
         vzvanLabel.setText(sendPeople.getRang());
-        String test = "24/09/1999 - 24/09/1999 \n\r 24/09/1999 - 24/09/1999 \n\r 24/09/1999 - 24/09/1999";
+        String test = "";
+        for (int i = 0; i <sendPeople.getListVakation().size() ; i++) {
+          test+=GeneratorDuty.dateFormat.format(sendPeople.getListVakation().get(i).getFirstData())+" - "+ GeneratorDuty.dateFormat.format(sendPeople.getListVakation().get(i).getLastData())+"\r";
+        }
+
         hollidayLabel.setText(test);
+        lCall.setText(sendPeople.getCall());
+        posadaLabel.setText(sendPeople.getPosition());
     }
 
 
@@ -78,7 +89,7 @@ public class AdminInfoList {
     }
 
     public void clicaddButton(ActionEvent actionEvent) throws IOException {
-
+        showWindow("/Wievs/admin/RedctorPanelAdmin.fxml",null);
     }
     
     public void clicdellbutton(ActionEvent actionEvent) {
@@ -88,18 +99,24 @@ public class AdminInfoList {
     }
 
     public void clicapdeit(ActionEvent actionEvent) throws IOException {
+        if(sendPeople!=null)
         showWindow("/Wievs/admin/RedctorPanelAdmin.fxml",sendPeople);
     }
 
     private void showWindow (String URL,People people) throws IOException {
         Stage primaryStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(URL));
-        ((RedactPerson)FakeRepositori.arrControler[0]).setStage(primaryStage).setPeople(people);
+        if(people!=null){
+            ((RedactPerson)FakeRepositori.arrControler[0]).setStage(primaryStage).setPeople(people);
+        }else {
+            ((RedactPerson)FakeRepositori.arrControler[0]).setStage(primaryStage).setPeople(new People());
+        }
+
         fxmlLoader.setController(FakeRepositori.arrControler[0]);
         Parent root = fxmlLoader.load();
         primaryStage.initModality(Modality.APPLICATION_MODAL);
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root,700,400));
+        primaryStage.setScene(new Scene(root, 651,453));
         primaryStage.showAndWait();
     }
 }
