@@ -56,10 +56,10 @@ public class UserMain {
         } );
 
         usermasenger.setOnAction(event -> {
-
             if(primaryStage ==null){
                 primaryStage = new Stage();
                 primaryStage.setResizable(false);
+                primaryStage.setTitle("Месенджер");
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Wievs/user/userMassenger.fxml"));
                 Parent root = null;
                 try {
@@ -73,13 +73,11 @@ public class UserMain {
                 primaryStage.hide();
                 primaryStage.show();
             }
-
         });
 
         personcard.setOnAction( event -> {
             try {
                 borderPanel.setCenter(FXMLLoader.load(getClass().getResource("/Wievs/admin/adminInfoListPerson.fxml")));
-                //  borderPanel.setCenter(FXMLLoader.load(getClass().getResource("/Wievs/user/userInfo.fxml")));
             } catch ( IOException e){
                 e.printStackTrace();
             }
@@ -96,7 +94,6 @@ public class UserMain {
         });
 
         file.setOnAction(event -> {
-            System.out.println("nada otkrut failovu sistemu");
             fileChooser.setInitialDirectory(new File("Рапорта"));
             try {
                 Desktop.getDesktop().open( fileChooser.showOpenDialog(new Stage()));

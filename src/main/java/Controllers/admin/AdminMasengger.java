@@ -47,8 +47,8 @@ public class AdminMasengger {
     @FXML
     JFXButton nacha;
 
-
-    private People mesegPeople;
+    TableView.TableViewSelectionModel<People> selectionModel;
+ //   private People mesegPeople;
     private boolean writeAdmin=false;
 
     // chaf masage status false
@@ -61,6 +61,25 @@ public class AdminMasengger {
 
     @FXML
     private void initialize(){
+        selectionModel=table.getSelectionModel();
+        selectionModel.selectedItemProperty().addListener(event ->{
+            writeAdmin = false;
+            if(selectionModel.getSelectedItem()!=null){
+                Platform.runLater(() -> chatBox.getChildren().clear());
+                label.setText(selectionModel.getSelectedItem().getName()+" "+selectionModel.getSelectedItem().getSoname());
+                selectionModel.getSelectedItem().getMassenger().setIncoming(false);
+                table.refresh();
+                for( Masage masage : selectionModel.getSelectedItem().getMassenger().getMasageHistory() ){
+                    if(!masage.isStatus()){
+                        wisiblAdminmasage(masage.getText());
+                    }else if (masage.isStatus()){
+                        wisibleUserMasage(masage.getText());
+                    }
+                }
+                selectionModel.getSelectedItem().getMassenger().setIncoming(false); // nada chitat ne
+            }
+        });
+
         table.setItems(FakeRepositori.fakePeople.sorted(this::sortForTable));
         columPerson.setCellValueFactory(t->t.getValue().rangProperty().concat(" ").concat(t.getValue().nameProperty().concat(" ").concat(t.getValue().sonameProperty())) );
         chatBox.getStyleClass().add("chatBox");
@@ -94,26 +113,6 @@ public class AdminMasengger {
     }
 
 
-    @FXML
-    public void changePeople(MouseEvent mouseEvent) {
-        writeAdmin = false;
-        if((People)table.getSelectionModel().getSelectedItem()!=null){
-            Platform.runLater(() -> chatBox.getChildren().clear());
-            mesegPeople = (People)table.getSelectionModel().getSelectedItem();
-            label.setText(mesegPeople.getName()+" "+mesegPeople.getSoname());
-            //table.setSelectionModel(null);
-            mesegPeople.getMassenger().setIncoming(false);
-            table.refresh();
-            for( Masage masage : mesegPeople.getMassenger().getMasageHistory() ){
-                if(!masage.isStatus()){
-                    wisiblAdminmasage(masage.getText());
-                }else if (masage.isStatus()){
-                    wisibleUserMasage(masage.getText());
-                }
-            }
-            mesegPeople.getMassenger().setIncoming(false); // nada chitat ne
-        }
-    }
 
 
     private void wisiblAdminmasage(String masage){
@@ -142,10 +141,10 @@ public class AdminMasengger {
     public void sendMasage(ActionEvent actionEvent) {
         if(!lineText.getText().trim().equals("")){
             wisiblAdminmasage(lineText.getText());
-            if(mesegPeople!=null && !writeAdmin){
-                mesegPeople.getMassenger().getMasageHistory().add(new Masage(lineText.getText(),false));
-                mesegPeople.getMassenger().setOutcoming(true); //useru tre chitatu daa
-                mesegPeople.getMassenger().setIncoming(false);
+            if(selectionModel.getSelectedItem()!=null && !writeAdmin){
+                selectionModel.getSelectedItem().getMassenger().getMasageHistory().add(new Masage(lineText.getText(),false));
+                selectionModel.getSelectedItem().getMassenger().setOutcoming(true); //useru tre chitatu daa
+                selectionModel.getSelectedItem().getMassenger().setIncoming(false);
             }
             if(writeAdmin){
                 FakeRepositori.chaffMasanger.getMasageHistory().add(new Masage(lineText.getText(),false)); // otprav admin
@@ -163,7 +162,7 @@ public class AdminMasengger {
         TextFlow tempFlow=new TextFlow();
         Text txtName;
         try {
-            txtName=new Text(mesegPeople.getName().concat(" ").concat(mesegPeople.getSoname()) + ":\n");
+            txtName=new Text(selectionModel.getSelectedItem().getName().concat(" ").concat(selectionModel.getSelectedItem().getSoname()) + ":\n");
         }catch (Exception e){
             txtName=new Text("Начальник" + ":\n");
         }
@@ -185,6 +184,7 @@ public class AdminMasengger {
 
     @FXML
     public void nachal(ActionEvent actionEvent) {
+        Platform.runLater(() -> chatBox.getChildren().clear());
         writeAdmin = true;
         label.setText("Начальник");
         nacha.setStyle("-fx-background-color: #4059a9;");

@@ -19,7 +19,7 @@
         <items>
           <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="250.0" prefHeight="422.0" prefWidth="274.0">
                <children>
-                  <TableView fx:id="tablePerson" layoutX="-4.0" layoutY="14.0" maxWidth="-Infinity" onMousePressed="#presTable" prefHeight="422.0" prefWidth="272.0" stylesheets="@../../Styles/table.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tablePerson" layoutX="-4.0" layoutY="14.0" maxWidth="-Infinity" prefHeight="422.0" prefWidth="272.0" stylesheets="@../../Styles/table.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="nameColum" prefWidth="119.0" text="Звання" />
                       <TableColumn fx:id="sonameColum" prefWidth="148.0" text="Прызвище Ім'я" />
@@ -37,7 +37,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <GridPane fx:id="gridpanel" layoutX="10.0" layoutY="23.0" prefHeight="193.0" prefWidth="388.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="23.0">
+                  <GridPane fx:id="gridpanel" layoutX="10.0" layoutY="26.0" prefHeight="193.0" prefWidth="388.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="26.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="40.0" prefWidth="191.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="159.0" />
@@ -45,6 +45,7 @@
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -102,7 +103,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label text="Дні (відпусток\відряджень)" GridPane.rowIndex="6">
+                        <Label text="Дні (відпусток\відряджень)" GridPane.rowIndex="7">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -115,6 +116,16 @@
                         <Label fx:id="lCall" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label text="Навантажені дні" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="hardLabel" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -147,7 +158,7 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <Label fx:id="hollidayLabel" alignment="TOP_LEFT" layoutX="10.0" layoutY="216.0" prefHeight="277.0" prefWidth="198.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="216.0">
+                  <Label fx:id="hollidayLabel" alignment="TOP_LEFT" layoutX="12.0" layoutY="221.0" prefHeight="277.0" prefWidth="198.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="221.0">
                      <font>
                         <Font size="15.0" />
                      </font>

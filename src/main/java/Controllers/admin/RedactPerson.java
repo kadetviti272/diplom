@@ -1,6 +1,7 @@
 package Controllers.admin;
 
 import Models.*;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -9,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
@@ -22,6 +24,29 @@ import java.util.Date;
 
 
 public class RedactPerson {
+
+    @FXML
+    private VBox sundey;
+
+    @FXML
+    private JFXCheckBox d1;
+
+    @FXML
+    private JFXCheckBox d2;
+
+    @FXML
+    private JFXCheckBox d3;
+
+    @FXML
+    private JFXCheckBox d4;
+
+    @FXML
+    private JFXCheckBox d5;
+
+    @FXML
+    private JFXCheckBox d6;
+
+
     @FXML
     TableView<Vacation> tabVacation ;
     @FXML
@@ -117,6 +142,12 @@ public class RedactPerson {
                 }
             }
         };
+        tPos.setOnAction(event ->{
+            if(tPos.getValue().equals("Викладач"))
+                sundey.setVisible(true);
+            else
+                sundey.setVisible(false);
+        });
         dBirsday.setConverter(converter);
         dBirsday.setPromptText("dd/MM/yyyy");
         lDate.setConverter(converter);
@@ -132,6 +163,12 @@ public class RedactPerson {
         tLogin.setText(people.getLogin());
         tPassword.setText(people.getPassword());
         System.out.println("init");
+
+        if(tPos.getValue() == null || tPos.getValue().equals("Викладач"))
+            sundey.setVisible(true);
+        else
+            sundey.setVisible(false);
+
         if (people == null) {
             people = new People();
         } else {

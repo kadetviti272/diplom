@@ -21,7 +21,7 @@
                      <children>
                         <AnchorPane prefHeight="342.0" prefWidth="204.0" VBox.vgrow="SOMETIMES">
                            <children>
-                              <TableView fx:id="table" layoutX="-297.0" layoutY="-59.0" maxHeight="-Infinity" onMousePressed="#changePeople" prefHeight="337.0" prefWidth="168.0" stylesheets="@../../Styles/table.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="table" layoutX="-297.0" layoutY="-59.0" maxHeight="-Infinity"  prefHeight="337.0" prefWidth="168.0" stylesheets="@../../Styles/table.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
                                   <TableColumn fx:id="columPerson" prefWidth="75.0" text="Користувачі" />
                                 </columns>
@@ -46,7 +46,7 @@
           </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="317.0">
                <children>
-                  <Label fx:id="label" layoutX="24.0" layoutY="6.0" textFill="#5360b5" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="6.0">
+                  <Label fx:id="label" layoutX="20.0" prefHeight="21.0" prefWidth="181.0" textFill="#5360b5" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Label>

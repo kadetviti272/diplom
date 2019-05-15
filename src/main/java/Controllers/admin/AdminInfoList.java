@@ -4,6 +4,8 @@ import Models.Duty;
 import Models.FakeRepositori;
 import Models.GeneratorDuty;
 import Models.People;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -46,47 +49,70 @@ public class AdminInfoList {
     HBox test;
     @FXML
     Label lCall;
+    @FXML
+    Label hardLabel;
 
-    private People sendPeople;
+   // private People sendPeople;
 
     private RedactPerson redactPerson = new RedactPerson();
+    TableView.TableViewSelectionModel<People> selectionModel;
+
 
     @FXML
     private void initialize() throws IOException {
         if(FakeRepositori.autorizadPeopl != null){
             test.setVisible(false);
-        }
-        tablePerson.setItems(FakeRepositori.fakePeople);
+            tablePerson.setRowFactory( tv ->{
+                TableRow<People> row =new TableRow<>();
+                BooleanBinding critical =  Bindings.createBooleanBinding(()->{
+                    if(row.getItem()!=null &&  row.getItem().getId()==FakeRepositori.autorizadPeopl.getId() ){
+                        return true;
+                    }
+                    return false;
+                },row.itemProperty());
+                row.styleProperty().bind(Bindings.when(critical)
+                        .then("-fx-background-color: green;")
+                        .otherwise(""));
+                return row;
+            });
+            tablePerson.setItems(FakeRepositori.fakePeople.sorted(this::sortForTable));
+        }else
+            tablePerson.setItems(FakeRepositori.fakePeople);
+
         nameColum.setCellValueFactory(person -> person.getValue().rangProperty());
         sonameColum.setCellValueFactory(person -> person.getValue().sonameProperty().concat(" ").concat(person.getValue().nameProperty()));
+
+        selectionModel = tablePerson.getSelectionModel();
+        selectionModel.selectedItemProperty().addListener( event ->{
+            if (selectionModel.getSelectedItem()!=null)
+            initLabel();
+            //sendPeople = selectionModel.getSelectedItem();
+        });
+
+    }
+
+    private int sortForTable(People p1,People p2){
+        if(p1.getId() == FakeRepositori.autorizadPeopl.getId())
+            return -1;
+        else return 1;
     }
 
     private void initLabel(){
-        nameLabel.setText(sendPeople.getName());
-        sonameLabel.setText(sendPeople.getSoname());
-        birsdayLabel.setText(GeneratorDuty.dateFormat.format(sendPeople.getdBirsday()));
+        nameLabel.setText(selectionModel.getSelectedItem().getName());
+        sonameLabel.setText(selectionModel.getSelectedItem().getSoname());
+        birsdayLabel.setText(GeneratorDuty.dateFormat.format(selectionModel.getSelectedItem().getdBirsday()));
         posadaLabel.setText("nada dodelat");
-        vzvanLabel.setText(sendPeople.getRang());
+        vzvanLabel.setText(selectionModel.getSelectedItem().getRang());
         String test = "";
-        for (int i = 0; i <sendPeople.getListVakation().size() ; i++) {
-          test+=GeneratorDuty.dateFormat.format(sendPeople.getListVakation().get(i).getFirstData())+" - "+ GeneratorDuty.dateFormat.format(sendPeople.getListVakation().get(i).getLastData())+"\r";
+        for (int i = 0; i <selectionModel.getSelectedItem().getListVakation().size() ; i++) {
+          test+=GeneratorDuty.dateFormat.format(selectionModel.getSelectedItem().getListVakation().get(i).getFirstData())+" - "+ GeneratorDuty.dateFormat.format(selectionModel.getSelectedItem().getListVakation().get(i).getLastData())+"\r";
         }
 
         hollidayLabel.setText(test);
-        lCall.setText(sendPeople.getCall());
-        posadaLabel.setText(sendPeople.getPosition());
+        lCall.setText(selectionModel.getSelectedItem().getCall());
+        posadaLabel.setText(selectionModel.getSelectedItem().getPosition());
     }
 
-
-    public void presTable(MouseEvent mouseEvent) {
-        if ((People) tablePerson.getSelectionModel().getSelectedItem() != null) {
-            sendPeople = (People) tablePerson.getSelectionModel().getSelectedItem();
-            // rutian nada nowue poly dly otobrajeniy;
-          //  System.out.println(sendPeople.toString2());
-            System.out.println( sendPeople);
-            initLabel();
-        }
-    }
 
     public void clicaddButton(ActionEvent actionEvent) throws IOException {
         showWindow("/Wievs/admin/RedctorPanelAdmin.fxml",null);
@@ -99,8 +125,8 @@ public class AdminInfoList {
     }
 
     public void clicapdeit(ActionEvent actionEvent) throws IOException {
-        if(sendPeople!=null)
-        showWindow("/Wievs/admin/RedctorPanelAdmin.fxml",sendPeople);
+        if(selectionModel.getSelectedItem()!=null)
+        showWindow("/Wievs/admin/RedctorPanelAdmin.fxml",selectionModel.getSelectedItem());
     }
 
     private void showWindow (String URL,People people) throws IOException {

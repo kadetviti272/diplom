@@ -1,6 +1,7 @@
 package Controllers.admin;
 
 import Models.*;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeView;
@@ -13,23 +14,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class AdmGenerator {
 
+
     @FXML
     JFXComboBox<Mans> comboBox;
-    @FXML
-    JFXTreeView<People> t2;
-    @FXML
-    JFXTreeTableColumn<People,String> c2;
-//    @FXML
-//    ComboBox<Mans> comboBox;
     @FXML
     TableView<Duty> tablenaryd;
     @FXML
@@ -50,6 +48,7 @@ public class AdmGenerator {
     @FXML
     private void initialize() throws ParseException, IOException {
         comboBox.setItems(FXCollections.observableArrayList(Mans.January, Mans.February, Mans.March, Mans.April, Mans.May, Mans.June, Mans.July, Mans.August, Mans.September, Mans.October, Mans.November, Mans.December ));
+
         comboBox.setOnAction(event ->  tablenaryd.setItems(FXCollections.observableArrayList(GeneratorDuty.getListDutiMans(comboBox.getValue()))));
         algoritm.setOnAction(event ->{
             if(selectionModel.getSelectedItem()!=null && algoritm.isSelected()){
@@ -68,12 +67,17 @@ public class AdmGenerator {
             }
         });
 
+        comboBox.getSelectionModel().select(Calendar.getInstance().getTime().getMonth());
+
         columdate.setCellValueFactory( t -> new SimpleStringProperty( GeneratorDuty.dateFormat.format(t.getValue().getData())));
 
         //c2.setCellValueFactory(t-> t.getValue().nameProperty().concat(" ").concat(t.);
 
         columChange.setCellValueFactory(t-> t.getValue().nameProperty().concat(" ").concat(t.getValue().sonameProperty()));
         selectionModel = tablenaryd.getSelectionModel();
+
+
+
         selectionModel.selectedItemProperty().addListener(new ChangeListener<Duty>() {
             @Override
             public void changed(ObservableValue<? extends Duty> observable, Duty oldValue, Duty newValue) {
@@ -81,14 +85,19 @@ public class AdmGenerator {
                     tableChange.setItems(null);
                 }
                 else{
-                    if(algoritm.isSelected())
-                    tableChange.setItems(FXCollections.observableArrayList(helpTable(newValue)));
+                    if(algoritm.isSelected()){
+                        tableChange.setItems(FXCollections.observableArrayList(helpTable(newValue)));
+                        System.out.println("dfdfdfdf");
+                    }
                     else{
                         tableChange.setItems(FakeRepositori.fakePeople);
+                        System.out.println("uuuu");
+
                     }
                 }
             }
         });
+        tablenaryd.setItems(FXCollections.observableArrayList(GeneratorDuty.getListDutiMans(comboBox.getValue())));
     }
 
     private List<People> helpTable(Duty duty){
@@ -105,9 +114,16 @@ public class AdmGenerator {
         tablenaryd.setItems(GeneratorDuty.GeneratorDutyMans(comboBox.getValue()));
     }
 
+    @FXML
     public void changeDuty(ActionEvent actionEvent) {
         System.out.println(tablenaryd.getSelectionModel().getSelectedItem().getPeople().getName());
         System.out.println(tableChange.getSelectionModel().getSelectedItem().getName());
+        new Thread(()->{
+            RaportGenerator.raportChange(tablenaryd.getSelectionModel().getSelectedItem(),
+                    tablenaryd.getSelectionModel().getSelectedItem().getPeople(),
+                    tableChange.getSelectionModel().getSelectedItem());
+        }).start();
+
         tablenaryd.getSelectionModel().getSelectedItem().getPeople().getListDuti().remove(tablenaryd.getSelectionModel().getSelectedItem()); // udalaym narad u persona
         tablenaryd.getSelectionModel().getSelectedItem().setPeople(tableChange.getSelectionModel().getSelectedItem());
         tablenaryd.refresh();

@@ -1,9 +1,6 @@
 package Controllers.Cheff;
 
-import Models.Duty;
-import Models.GeneratorDuty;
-import Models.Mans;
-import Models.RaportGenerator;
+import Models.*;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -12,12 +9,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import java.text.ParseException;
+import java.util.Calendar;
 
 public class GlvaPanel {
 
     @FXML
     ComboBox<Mans> combobox;
-
     FileChooser fileChooser;
     @FXML
     TableView<Duty> table;
@@ -34,8 +31,11 @@ public class GlvaPanel {
     @FXML
     private void initialize() throws ParseException {
 
-
         combobox.setItems(FXCollections.observableArrayList(Mans.January, Mans.February, Mans.March, Mans.April, Mans.May, Mans.June, Mans.July, Mans.August, Mans.September, Mans.October, Mans.November, Mans.December ));
+        combobox.getSelectionModel().select(Calendar.getInstance().getTime().getMonth());
+
+
+
         fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Raports","*.docx")
@@ -43,7 +43,6 @@ public class GlvaPanel {
 
         combobox.setOnAction(event -> {
              table.setItems(FXCollections.observableArrayList(GeneratorDuty.getListDutiMans(combobox.getValue())));
-
              if(table.getItems().size() > 0 && table.getItems().get(0).isCertified()){
                  chekbox.setSelected(true);
 
@@ -53,7 +52,6 @@ public class GlvaPanel {
              if(table.getItems().size()==0){
                  chekbox.setSelected(false);
              }
-
         });
 
 
@@ -67,6 +65,9 @@ public class GlvaPanel {
                 setText(empty?null:item?"затверджено":"незатверджено");
             }
         });
+        table.setItems(FXCollections.observableArrayList(GeneratorDuty.getListDutiMans(combobox.getValue())));
+        if (table.getItems().get(0).isCertified())
+            chekbox.setSelected(true);
 
      }
 

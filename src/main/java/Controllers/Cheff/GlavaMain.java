@@ -68,7 +68,7 @@ public class GlavaMain {
         {
             Stage primaryStage = new Stage();
             primaryStage.setResizable(false);
-            System.out.println("rabotaet");
+            primaryStage.setTitle("Месенджер");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Wievs/cheff/cheffMasanger.fxml"));
             Parent root = fxmlLoader.load();
             primaryStage.setScene(new Scene(root, 700, 400));

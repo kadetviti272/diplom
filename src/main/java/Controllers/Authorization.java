@@ -78,43 +78,19 @@ public class Authorization {
                                     System.out.println(idautorizuser+"   ssssssssssssss");
                                 }
                             }
-
                     }
                 }
-
                 if(templog.equals(login) && temppass.equals(password)){
                     System.out.println("zashol  "+huis);
                     avtorizovan = true;
                     System.out.println(idautorizuser);
                     checkUser(huis);
-                    //addListener();
                 }
             }
         }
         db.close();
     }
 
-
-    private void addListener(){
-        fakeDuty.addListener(new ListChangeListener<Duty>() {
-            @Override
-            public void onChanged(Change<? extends Duty> c) {
-                System.out.println("da dodano narydov");
-          }
-        });
-        fakeVacation.addListener(new ListChangeListener<Vacation>() {
-            @Override
-            public void onChanged(Change<? extends Vacation> c) {
-
-            }
-        }); // dobavlenie slushatelly dly otpuskov
-        fakePeople.addListener(new ListChangeListener<People>() {
-            @Override
-            public void onChanged(Change<? extends People> c) {
-                System.out.println("izmenenie v cheloveakh");
-            }
-        });
-    }
 
     boolean isautoriz = false;
     private void checkUser( int huis) throws IOException {
@@ -127,17 +103,17 @@ public class Authorization {
             case 1:
                 System.out.println("zashol admin");
                 url= "/Wievs/admin/adminPanel.fxml";
-                showWindow(url);
+                showWindow(url,"Адміністратор");
                 break;
             case 2:
                 System.out.println("nachalnik");
                 url= "/Wievs/cheff/glavaMain.fxml";
-                showWindow(url);
+                showWindow(url,"Начальник");
                 break;
             case 3:
                 System.out.println("user++++");
                 url= "/Wievs/user/userMain.fxml";
-                showWindow(url,new People());
+                showWindow(url,new People(),"Користувач");
                 break;
             default:
                 url=null;
@@ -147,8 +123,9 @@ public class Authorization {
     }
 
 
-    private void showWindow(String URL) throws IOException {
+    private void showWindow(String URL, String namePanel) throws IOException {
         final Stage primaryStage = new Stage();
+        primaryStage.setTitle(namePanel);
         primaryStage.setOnCloseRequest(event -> {
             try {
                 FakeRepositori.clinDb();
@@ -162,13 +139,13 @@ public class Authorization {
         });
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(URL));
         Parent root = fxmlLoader.load();
-        primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 800 , 500));
         primaryStage.show();
     }
 
-    private void showWindow (String URL,People people) throws IOException {
+    private void showWindow (String URL,People people, String namePanel) throws IOException {
         Stage primaryStage = new Stage();
+        primaryStage.setTitle(namePanel);
         primaryStage.setOnCloseRequest(event -> { // nada bude porabotat
             try {
                 FakeRepositori.clinDb();
@@ -186,29 +163,8 @@ public class Authorization {
         userMain.setPeople(people);
         fxmlLoader.setController(userMain);
         Parent root = fxmlLoader.load();
-        primaryStage.setTitle(Integer.toString(people.getId()));
         primaryStage.setScene(new Scene(root,800,500));
         primaryStage.show();
-    }
-
-    private void clinWrait() throws IOException {
-        new Thread(()->{
-            try {
-                clinDb();
-                wraitDb();
-            } catch (IOException e) {
-                try {
-                    Thread.sleep(1000);
-                    System.out.println("da i polomalsy zdes ");
-                    clinDb();
-                    wraitDb();
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        }).start();
     }
 
 }

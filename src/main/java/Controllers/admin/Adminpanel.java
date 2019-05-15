@@ -54,6 +54,7 @@ public class Adminpanel {
     public void cliclMesegMeny(ActionEvent actionEvent) throws IOException {
         if(primaryStage ==null){
             primaryStage = new Stage();
+            primaryStage.setTitle("Месенджер");
             primaryStage.setResizable(false);
             System.out.println("rabotaet");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Wievs/admin/adminMasengger.fxml"));

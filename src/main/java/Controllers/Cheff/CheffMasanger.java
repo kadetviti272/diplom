@@ -2,6 +2,7 @@ package Controllers.Cheff;
 
 import Models.FakeRepositori;
 import Models.Masage;
+import Models.Massenger;
 import com.google.gson.Gson;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -36,7 +37,8 @@ public class CheffMasanger {
                     admMasag(FakeRepositori.chaffMasanger.getMasageHistory().get(i).getText());
                 }
             }
-        }
+        }else
+            FakeRepositori.chaffMasanger = new Massenger();
     }
 
     private void cheffMasage (String masage){
